@@ -19,7 +19,10 @@ Target User Audience
 The target user audience will be ideally everyone, but most likely would younger users in the 14-20 and 20-30 age bracket. This would mostly be because they are more technology literate and likely to use a service like this as it comes naturally to them. These age brackets are also more likely to have access to the technology they need to utilise the messaging service such as a laptop or desktop computer with their preferred internet browser installed.
 
 However inclusive and clear design will be taken into account so that the application is as accessible as possible. The users will mostly be using the application from their computer as the main project is web application, however there is potential for a mobile application that can be used on-the-go and can be accessed via a mobile application. Responsive design will also be implemented so the user will be able to access the service from their mobile phones internet browser but a dedicated mobile application that integrates with the web application may be developed in the future.
+
+
 Data Sources
+
 The data will be stored in MongoDB json format database, with a user ID generated when the user creates an account with the service, and this will be stored in a User Table. This will allow the user to message other users and have their message be received by the intended user, and the same will apply in a group chat context. 
 
 When messages are sent they will be stored in a message table, so that previous messages can be viewed even after the application has been closed, not just stored in local data. Having the previous messages load when starting the application should be a main feature of the application. The messages table will also store any media sent between the users for the same reason.
@@ -29,3 +32,38 @@ Minimum Viable Product (MVP)
 
 The MVP will be a simplified application, containing only the features necessary for the basic functionality of the web application. The MVP for the messaging application would support numerous users and each user could have a direct message thread with any other user. Groups, message threads that more than 2 users have permission to access, would be included in the MVP but the sending and receiving of videos, images, and audio would not be because that is a complicated feature and the application fulfills it’s purpose statement without it. All data will be stored in a cloud based data store, and permissions managing and authentication will be used to determine which users are allowed to request a particular thread in order to read it or to post messages to it. To have multiple user accounts the MVP will need to have authentication and password recovery features. The MVP will not include a mobile app, the web service would be accessible from a mobile device but there would not be a dedicated mobile app that communicates with the same server as the web service. This feature will be omitted for complexity’s sake. Notifications will also be omitted as they are a sub feature of the mobile app variant which does not fit within the MVP.
 
+
+Main Components
+
+Threads
+
+Threads is an overarching component which will store an array of message components. It will be utilised in both group chat and private 1 on 1 chat feature.Thead will be a subscriber based component. When a user wants to start a conversation with another user using search, the backend system will automatically create a new thread and subscribe the both users onto it, this will allow users to exchange messages. A Thread with more than 2 members will morph into a new Thread with extended properties to support group chat, it will be called Group Chat in the app.
+
+Properties 1-1:
+
+- Messages
+- Subscribed Users (inherits from)
+
+Properties 1 to Many:
+
+- Subscribed Users
+- Messages
+- Name/Title
+- Admin ( can be one to many)
+
+
+Message
+
+Message will be a component that will store the different communication mediums. These mediums are text, images, audio, gifs but for our MVP we will only implement text. Message is also a subscriber based component, when a user sends a message all the subscribed users of the overarching thread component including the user will be automatically subscribed to the message.
+
+
+Properties:
+- Subscribed Users (Inherits from Thread)
+
+Communication Mediums:
+
+- Text
+- Images
+- GIFs
+- Audio Recording
+- Files
