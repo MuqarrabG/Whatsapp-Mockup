@@ -9,4 +9,3 @@ User Stories:
 7. As a user, I want to be able to edit my messages, so that I can correct typos and misinputs.
 8. As a user, I want to react to a message, so that I can provide a reply with creating a new message.
 9. As a user, I want to see when a message has been sent, so that I know how long it has been since I've received/sent a particular message.
-10. As a user, I would like to rename my group, so that I can understand the purpose of the group chat.
