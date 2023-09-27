@@ -1,0 +1,53 @@
+{
+    "users":[
+        {
+            "userId": 11111,
+            "username": "example user one",
+            "password": "something secure"
+        },
+        {
+            "userId": 22222,
+            "username": "example user two",
+            "password": "something else secure"
+        }
+    ],
+    "chats":[
+        {
+            "groupId": 0,
+            "messages": [
+                {
+                    "messageId": 1,
+                    "content": "Hello two",
+                    "author": 11111,
+                    "reactions": [
+                        {
+                            "icon": "wave",
+                            "author": 22222
+                        }
+                    ]
+                },
+                {
+                    "messageId": 1,
+                    "content": "Hi one",
+                    "author": 22222,
+                    "reactions": [
+                        {
+                            "icon": "wave",
+                            "author": 11111
+                        }
+                    ]
+                }
+            ],
+            "members": [
+                {
+                    "id": 11111,
+                    "nickname": "one"
+                },
+                {
+                    "id": 22222,
+                    "nickname": "two"
+                }
+            ]
+        }
+    ]
+}
