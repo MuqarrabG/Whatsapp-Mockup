@@ -17,6 +17,6 @@
 
     -* 1,3,7
     
-## {Group Member's} Progress
+## {Henry's} Progress
 ## {Group Member's} Progress
 ## {Group Member's} Progress
