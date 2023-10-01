@@ -1,4 +1,5 @@
 # What Was The Plan For Sprint 1?
+
     - structure and design
     1. plan the structure of the database as a simple json file for now
         - the use of a json file will not be permenant
@@ -11,15 +12,24 @@
     7. write a sprint report.
 
 # What Work Actually Happened
+
 ## {Andrew's} Progress
+
     * This sprint I have planned the structure of the database and setup the dummy json server to serve it.
     * I have writen the sprint plan in the sprint report document.
 
     -* 1,3,7
-    
+
 ## {Henry's} Progress
+
     * This sprint I have design the visual asthetics of the App.
 
     -* 5
-## {Group Member's} Progress
+
+## {Ben's} Progress
+
+    * This sprint I have:
+        - Created react application (2).
+        - Created 10 user stories with the help of the rest of the team.
+
 ## {Group Member's} Progress
