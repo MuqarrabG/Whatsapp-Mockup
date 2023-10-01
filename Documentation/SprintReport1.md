@@ -18,5 +18,8 @@
     -* 1,3,7
     
 ## {Henry's} Progress
+    * This sprint I have design the visual asthetics of the App.
+
+    -* 5
 ## {Group Member's} Progress
 ## {Group Member's} Progress
