@@ -32,4 +32,5 @@
         - Created react application (2).
         - Created 10 user stories with the help of the rest of the team.
 
-## {Group Member's} Progress
+## {Muqarrab's} Progress
+    - Task check
