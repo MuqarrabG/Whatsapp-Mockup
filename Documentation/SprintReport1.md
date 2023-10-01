@@ -37,3 +37,4 @@
         - Designed the layout and the flow of landing page.
         - Added small tweaks to Henry's design
         - Prototyped Henry's design to illustrate the flow of the app.
+        - Created App Overview document and information on landing page and other aspects of the App. Goal of this document in to help us design and structure the app. Note the document is not completed.
