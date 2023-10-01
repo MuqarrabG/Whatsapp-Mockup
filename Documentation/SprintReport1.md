@@ -33,4 +33,7 @@
         - Created 10 user stories with the help of the rest of the team.
 
 ## {Muqarrab's} Progress
-    - Task check
+    * This sprint I have:
+        - Designed the layout and the flow of landing page.
+        - Added small tweaks to Henry's design
+        - Prototyped Henry's design to illustrate the flow of the app.
