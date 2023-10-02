@@ -22,7 +22,10 @@
 
 ## {Henry's} Progress
 
-    * This sprint I have design the visual asthetics of the App.
+    * This sprint I have:
+        - design the visual asthetics of the App.
+        - design the logo for the app.
+        - come up with a theme for the app.
 
     -* 5
 
