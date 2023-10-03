@@ -7,5 +7,12 @@ module.exports = {
     require('tailwindcss'),
     require('autoprefixer'),
   ],
+  theme: {
+    extend: {
+      backgroundColor: {
+        'limegreen': '#94FF0D',
+      }
+    },
+  },
 }
 
