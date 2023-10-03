@@ -15,7 +15,7 @@ function SignupPage() {
   const hasDigits = (password) => /\d/.test(password);
   const hasMinLength = (password) => password.length >= 8;
   const passwordsMatch = (password, confirmPassword) =>
-    password === confirmPassword;
+    password === confirmPassword && password !== "";
 
   const requirements = [
     { test: hasUpperCase, message: "Contain at least one uppercase letter" },
