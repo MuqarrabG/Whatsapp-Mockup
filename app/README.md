@@ -50,3 +50,6 @@ Before running npm please update to following versions:
 - node.js version 18.17.1
 
 
+Login and Signup Pages inspiration -> https://www.loginradius.com/blog/engineering/guest-post/modern-login-signup-form-tailwindcss-react/
+
+

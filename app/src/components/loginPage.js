@@ -37,7 +37,7 @@ function LoginPage() {
                 placeholder="example@gmail.com"
               />
             </div>
-            <div>
+            <div className="relative">
               <label className="text-xl font-normal">Password</label>
               <input
                 type="password"
@@ -59,13 +59,16 @@ function LoginPage() {
               LOGIN
             </button>
           </div>
-          <div class="pt-8 text-base font-semibold leading-7">
-            <p class="text-gray-900">Don't have an account yet? <a
+          <div className="pt-8 text-base font-semibold leading-7">
+            <p className="text-gray-900">
+              Don't have an account yet?{" "}
+              <a
                 href="/signup"
-                class="font-bold text-lime-500 hover:text-sky-600"
+                className="font-bold text-lime-500 hover:text-lime-600"
               >
                 Signup
-              </a></p>
+              </a>
+            </p>
           </div>
         </form>
       </div>
