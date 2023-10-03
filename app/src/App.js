@@ -8,8 +8,6 @@ import {
 import './App.css';
 import LoginPage from "./components/Auth";
 import './index.css';
-import './tailwind.css';
-
 function App() {
   return (
     <Router>

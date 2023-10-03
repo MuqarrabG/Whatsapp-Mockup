@@ -19,7 +19,7 @@ function LoginPage() {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label class="block">Email:</label>
+          <label class="hover:text-sky-500">Email:</label>
           <input type="email" name="email" value={credentials.email} onChange={handleChange} required />
         </div>
         <div>
