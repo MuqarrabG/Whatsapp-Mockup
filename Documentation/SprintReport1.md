@@ -36,9 +36,19 @@
         - Created 10 user stories with the help of the rest of the team.
 
 ## {Muqarrab's} Progress
+
     * This sprint I have:
         - Designed the layout and the flow of landing page.
         - Added small tweaks to Henry's design
         - Prototyped Henry's design to illustrate the flow of the app.
         - Created App Overview document and information on landing page and other aspects of the App. Goal of this document in to help us design and structure the app. Note the document is not completed.
         - Implemented Login and Signup Page of the App (style and handling logic. Note: need to add Authenication logic)
+
+## Plan for Sprint 2
+
+    * Convert dummy server into express run server
+    * Begin developing the HTML and CSS of the following pages:
+        - Inbox/Home screen
+        - Send message screen
+        * this will all be done in reference to our designs created using Figma from Sprint 1
+    * Introduce the router to the project, to route between the pages of the app.
