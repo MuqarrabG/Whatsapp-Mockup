@@ -7,7 +7,8 @@ import {
 } from "react-router-dom";
 import './App.css';
 import LoginPage from "./components/loginPage";
-import SignupPage from "./components/signupPage"
+import SignupPage from "./components/signupPage";
+import HomePage from "./components/homePage";
 import './index.css';
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />}/>
         <Route path="/signup" element={<SignupPage />}/> 
+        <Route path="/home" element={<HomePage />}/>
       </Routes>
     </Router>
   );
