@@ -497,6 +497,9 @@ video {
 .flex {
   display: flex;
 }
+.grid {
+  display: grid;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -514,6 +517,9 @@ video {
 }
 .appearance-none {
   appearance: none;
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .items-center {
   align-items: center;
@@ -535,6 +541,11 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+.divide-x > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-right-width: calc(1px * var(--tw-divide-x-reverse));
+  border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
 }
 .rounded {
   border-radius: 0.25rem;

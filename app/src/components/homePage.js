@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <div class="grid grid-cols-3 divide-x">
       <div>01</div>
-      <div>{SignupPage}</div>
+      {/* <div>{SignupPage}</div> */}
       <div>03</div>
     </div>
   );
