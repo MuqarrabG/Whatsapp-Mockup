@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SignupPage from "./signupPage.js";
 import * as randomService from "./../services/randomService.js";
 import MessagingPanel from "./Messaging Panel/messagingPanel.js";
-import InformationPanel from "./Sidebar/sideBar.js";
+import SideBar from "./Sidebar/sideBar.js";
 
 function HomePage() {
   const [users, setUsers] = useState([])
@@ -18,7 +18,7 @@ function HomePage() {
 
   return (
     <div className="flex w-full h-screen overflow-y-hidden">
-      <InformationPanel />
+      <SideBar />
       <MessagingPanel />
     </div>
   );
