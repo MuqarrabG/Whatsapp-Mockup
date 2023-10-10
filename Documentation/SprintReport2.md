@@ -15,7 +15,4 @@
 
 ## {Group Member's} Progress
 
-## {Muqarrab} Progress
-
-    - Integrated ionicons with the application, this would give us access to 1300 widely used icons on the web
-    - 
+## {Group Member's} Progress
