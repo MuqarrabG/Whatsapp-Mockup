@@ -9,6 +9,16 @@
             "userId": 22222,
             "username": "example user two",
             "password": "something else secure"
+        },
+        {
+            "userId": 33333,
+            "username": "example user three",
+            "password": "another secure thing"
+        },
+        {
+            "userId": 44444,
+            "username": "example user four",
+            "password": "secure thing four"
         }
     ],
     "chats":[
@@ -42,6 +52,80 @@
                 {
                     "id": 11111,
                     "nickname": "one"
+                },
+                {
+                    "id": 22222,
+                    "nickname": "two"
+                }
+            ]
+        },
+        {
+            "groupId": 1,
+            "messages": [
+                {
+                    "messageId": 1,
+                    "content": "Hello three",
+                    "author": 11111,
+                    "reactions": [
+                        {
+                            "icon": "wave",
+                            "author": 33333
+                        }
+                    ]
+                },
+                {
+                    "messageId": 1,
+                    "content": "Hi one",
+                    "author": 33333,
+                    "reactions": [
+                        {
+                            "icon": "wave",
+                            "author": 11111
+                        }
+                    ]
+                }
+            ],
+            "members": [
+                {
+                    "id": 11111,
+                    "nickname": "one"
+                },
+                {
+                    "id": 33333,
+                    "nickname": "three"
+                }
+            ]
+        },
+        {
+            "groupId": 2,
+            "messages": [
+                {
+                    "messageId": 1,
+                    "content": "Hello two",
+                    "author": 33333,
+                    "reactions": [
+                        {
+                            "icon": "wave",
+                            "author": 22222
+                        }
+                    ]
+                },
+                {
+                    "messageId": 1,
+                    "content": "Hi three",
+                    "author": 22222,
+                    "reactions": [
+                        {
+                            "icon": "wave",
+                            "author": 33333
+                        }
+                    ]
+                }
+            ],
+            "members": [
+                {
+                    "id": 33333,
+                    "nickname": "three"
                 },
                 {
                     "id": 22222,
