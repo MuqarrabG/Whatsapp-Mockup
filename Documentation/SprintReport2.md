@@ -13,7 +13,7 @@
 
 ## {Muqarrab's} Progress
 
-    ### Sprint Report: Home/Main Page Development
+### Sprint Report: Home/Main Page Development
  
 **Key Focus:** Transforming Figma Designs to Live Web Page with React and Tailwind CSS  
 
