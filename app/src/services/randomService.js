@@ -1,12 +1,15 @@
 import axios from "axios";
-    
-async function getRandomUsers() {
-  try {
-    const data = await axios.get("/api/users/random_user?size=3");
-    return data;
-  } catch(err) {
-    console.log("error: ", err);
-  }
-}
 
-export default getRandomUsers;
+const baseURL = "https://random-data-api.com/api/v2/";
+
+export const getUser = () => {
+  return axios
+    .get(`${baseURL + "users?size="}${1}`)
+    .then((response) => response.data);
+};
+
+export const getRandomUsers = (number) => {
+  return axios
+    .get(`${baseURL + "users?size="}${number}`)
+    .then((response) => response.data);
+};

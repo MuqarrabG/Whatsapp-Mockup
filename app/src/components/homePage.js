@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SignupPage from "./signupPage.js";
-import randomService from "./../services/randomService.js";
+import * as randomService from "./../services/randomService.js";
+import MessagingPanel from "./Messaging Panel/messagingPanel.js";
+import SideBar from "./Sidebar/sideBar.js";
 
 function HomePage() {
-  //const data = randomService.getRandomUsers();
-  //console.log(data);
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    randomService.getRandomUsers(10).then((response) => {
+      console.log(response);
+      setUsers(response);
+    }).catch((error) => {
+      console.error("Failed to fetch users:", error);
+    });
+  }, []);
+
   return (
-    <div class="grid grid-cols-3 divide-x">
-      <div>01</div>
-      <div>{SignupPage}</div>
-      <div>03</div>
+    <div className="flex w-full h-screen overflow-y-hidden">
+      <SideBar />
+      <MessagingPanel />
     </div>
   );
 }
