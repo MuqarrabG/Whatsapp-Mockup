@@ -29,3 +29,7 @@
     - authentication to be added
         - calls to this may need to be modified
     - returns all the data for every group a specific user is in
+
+## POST /db/users
+    - adds a new user to the list of users
+    - body must be a JSON object with the username and password of the new user in text.

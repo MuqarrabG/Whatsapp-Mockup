@@ -4,6 +4,10 @@ const rawData = fs.readFileSync("server/databaseStructure.json")
 const data = JSON.parse(rawData)
 const DataBase = express.Router()
 
+const writeFile = (newData, returnFunction) => {
+    fs.writeFile('./server/databaseStructure.json', JSON.stringify(newData), returnFunction);
+}
+
 DataBase.get('/db/', (req, res) => {
     res.json(data)
 })
@@ -23,6 +27,25 @@ DataBase.get('/db/users/:user', (req, res) => {
         }
     })
     if(!found)res.status(401).json({error: "No user with that ID exists"})
+})
+
+DataBase.post('/db/users', (req, res) => {
+    const body = req.body
+    console.log(body)
+    const newUser = {
+        userId: data.nextUserId,
+        username: body.username,
+        password: body.password
+    }
+    data.users.push(newUser)
+    data.nextUserId+=1
+    writeFile(data, (error) => {
+        if(error){
+            res.status(404).send("User not Saved")
+            return
+        }
+        res.send("User Saved")
+    })
 })
 
 DataBase.get(['/db/chats','/db/groups'], (req, res) => {
