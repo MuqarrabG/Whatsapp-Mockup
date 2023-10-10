@@ -2,7 +2,7 @@ import React from 'react';
 
 function ChatMessages({ messages, currentUser }) {
   return (
-    <div className="p-4 overflow-y-auto h-[85vh] bg-red-500">
+    <div className="p-4 overflow-y-auto h-[86.5vh] bg-red-500">
       {messages.map((message, index) => (
         <div
           key={index}

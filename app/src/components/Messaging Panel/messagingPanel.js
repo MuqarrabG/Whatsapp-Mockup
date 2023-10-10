@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./header";
 import ChatMessages from "./chatMessages";
+import MessageInput from "./messageInput";
 
 function MessagingPanel() {
   const [selectedChat, setSelectedChat] = useState(() => {
@@ -9,6 +10,12 @@ function MessagingPanel() {
   });
 
   const [loading, setLoading] = useState(true);
+
+  //Need to improve logic
+  const sendMessage = (message) => {
+    // Handle sending the message here
+    console.log("Sent:", message);
+  };
 
   useEffect(() => {
     const handleChatSelection = () => {
@@ -29,10 +36,12 @@ function MessagingPanel() {
     return <h1>No Chats selected</h1>;
   }
 
+  // Add text input
   return (
-    <div className="min-w-[70%] bg-red-200 h-screen overflow-auto">
+    <div className="min-w-[70%] bg-red-200 h-screen overflow-hidden overscroll-contain">
       <Header chat={selectedChat}/>
       <ChatMessages messages={selectedChat.messages} currentUser={selectedChat.user.name}/>
+      <MessageInput sendMessage={sendMessage} />
     </div>
   );
 }
