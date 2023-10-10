@@ -6,7 +6,7 @@ function settingPage() {
 
     return(
         
-         
+
         
         
 
@@ -34,8 +34,7 @@ function settingPage() {
 
         </div>
         
-    
-            
+
            
 
     )
