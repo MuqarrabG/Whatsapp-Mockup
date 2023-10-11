@@ -1,35 +1,13 @@
-const express = require('express');
-const { createServer } = require('node:http');
-const cors = require('cors');
+const express = require('express')
+const cors = require("cors")
+const DataBase = require("./DBapi")
+const app = express()
+app.use(cors())
+app.use(express.json())
+app.use(express.static("build"))
+app.use(DataBase)
+const PORT = 3001
 
-const PORT = 4000
-const app = express();
-const http = require('http').Server(app);
-const server =  createServer(app);
-
-app.use(cors());
-
-const socketIO = require('socket.io')(http, {
-    cors: {
-        origin: "http://localhost:3000"
-    }
+app.listen(PORT, () => {
+  console.log('server running at http://localhost:', PORT);
 });
-
-socketIO.on('connection', (socket) => {
-    console.log(`${socket.id} user just connected`);
-    socket.on('disconnect', () => {
-        console.log(`${socket.id} user just disconnected`);
-    });
-});
-
-
-app.get('/', (req, res) => {
-    res.json({
-        message: 'Hello World'
-    });
-});
-
-server.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`)
-})
-
