@@ -6,9 +6,12 @@ import {
   useParams,
 } from "react-router-dom";
 import './App.css';
+import WhatsApp from "./pages/WhatsApp";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from "./components/loginPage";
 import SignupPage from "./components/signupPage";
 import HomePage from "./components/homePage";
+import SettingPage from "./components/settingPage"
 import './index.css';
 // import { useEffect } from "react";
 // import axios from "axios";
@@ -29,6 +32,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />}/>
         <Route path="/signup" element={<SignupPage />}/> 
+        <Route path="/setting" element={<SettingPage />}/> 
+        <Route path="/WhatsApp" element={<pages />}/> 
         <Route path="/home" element={<HomePage />}/>
       </Routes>
     </Router>
