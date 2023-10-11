@@ -4,7 +4,7 @@ import * as randomService from "./../services/randomService.js";
 import MessagingPanel from "./Messaging Panel/messagingPanel.js";
 import SideBar from "./Sidebar/sideBar.js";
 
-function HomePage() {
+function HomePage({ socket }) {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function HomePage() {
   return (
     <div className="flex w-full h-screen overflow-y-hidden">
       <SideBar />
-      <MessagingPanel />
+      <MessagingPanel socket={socket}/>
     </div>
   );
 }

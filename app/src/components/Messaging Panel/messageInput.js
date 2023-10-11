@@ -1,8 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const MessageInput = ({ sendMessage }) => {
+const MessageInput = ({ sendMessage, socket }) => {
   const [message, setMessage] = useState("");
   const textareaRef = useRef(null);
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if(message.trim() && localStorage.getItem('userName')) {
+      socket.emit('message', {
+        text: message,
+        name: localStorage.getItem('userName'),
+        id: `${socket.id}${Math.random()}`,
+        socketID: socket.id,
+      });
+    }
+    setMessage('');
+  };
 
   const handleSendClick = () => {
     if (message.trim()) {
