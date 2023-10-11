@@ -6,7 +6,7 @@ import {
   useParams,
 } from "react-router-dom";
 import './App.css';
-import WhatsApp from "./pages/WhatsApp";
+//import WhatsApp from "./pages/WhatsApp";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from "./components/loginPage";
 import SignupPage from "./components/signupPage";
