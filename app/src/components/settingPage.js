@@ -1,6 +1,8 @@
 // src/SettingPage.js
 
 import React, {useState} from "react";
+import header from "./Setting Left panel/headerLeft";
+import header from "./Setting Right panel/headerRight";
 
 function settingPage() {
 
