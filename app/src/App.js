@@ -21,7 +21,11 @@ function App() {
         <Route path="login/" element={<LoginPage />}/>
         <Route path="/signup" element={<SignupPage />}/> 
         <Route path="/setting" element={<SettingPage />}/> 
+<<<<<<< Updated upstream
 
+=======
+        <Route path="/home" element={<HomePage />}/>
+>>>>>>> Stashed changes
       </Routes>
     </Router>
   );
