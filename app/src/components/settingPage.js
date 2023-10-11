@@ -1,13 +1,9 @@
 // src/SettingPage.js
 
 import React, {useState} from "react";
-<<<<<<< Updated upstream
-import header from "./Setting Left panel/headerLeft";
-import header from "./Setting Right panel/headerRight";
-=======
+
 import headerLeft from "./Setting Left panel/headerLeft";
 import headerRight from "./Setting Right panel/headerRight";
->>>>>>> Stashed changes
 
 function settingPage() {
 

@@ -28,10 +28,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="login/" element={<LoginPage />}/>
+        <Route path="/" element={<LoginPage />}/>
         <Route path="/signup" element={<SignupPage />}/> 
         <Route path="/setting" element={<SettingPage />}/> 
-        <Route path="/WhatsApp" element={<pages />}/> 
 
       </Routes>
     </Router>
