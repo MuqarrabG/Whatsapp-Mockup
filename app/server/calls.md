@@ -21,14 +21,27 @@
     - authentication to be added
         - calls to this may need to be modified
     - returns all the data for every group a specific user is in
+        - null if there are none
 
-### PUT
-    - Change Username
-    - to do
+### PUT /db/users/username
+    - Change Username for a specific user
+    - body must be a JSON object with the format:
+    {
+        userId: (int),
+        username: (String)
+    }
+    - untested
+        - contact me if you have an error with it
 
-### PUT
-    - Change password
-    - to do
+### PUT /db/users/password
+    - Change password for a specific user
+    - body must be a JSON object with the format:
+    {
+        userId: (int),
+        password: (String)
+    }
+    - untested
+        - contact me if you have an error with it
 
 ### POST /db/users
     - adds a new user to the list of users
@@ -38,9 +51,10 @@
         password: (String)
     }
 
-### DELETE
-    - User
-    - to do
+### DELETE /db/users/:user
+    - removes a user from the list of users
+    - untested
+        - contact me if you have an error with it
 
 ## Groups
 
@@ -62,19 +76,24 @@
         founderName: (String)
     }
     - untested
+        - contact me if you have an error with it
 
-### DELETE
-    - Group
-    - to do
-     - contact me if you have an error with it
+### DELETE /db/groups/:group
+    - deletes a specific group
 
 ## Members
 
-### PUT
-    - change user nickname for a group
-    - to do
+### PUT /db/groups/:group/rename
+    - changes a specific user's nickname for a specific group
+    - body must be a JSON object with the format:
+    {
+        memberId: (Int),
+        memberName: (String)
+    }
+    - untested
+        - contact me if you have an error with it
 
-### POST /db/groups/:groupId/invite
+### POST /db/groups/:group/invite
     - adds a new member to a specific group
     - body must be a JSON object with the format:
     {
@@ -84,19 +103,26 @@
     - untested
         - contact me if you have an error with it
 
-### DELETE
-    - User from a group
-    - to do
+### DELETE /db/groups/:group/ban/:user
+    - Removes a user from a group if they are there
+    - body must be a JSON object with the format:
+    {
+        memberId: (Int)
+    }
+    - untested
+        - contact me if you have an error with it
 
 ## Messages
 
-### GET /db/groups/:group/latest
+### GET /db/groups/:group/latest/message
     - authentication to be added
         - calls to this may need to be modified
     - returns the latest message for a specific group
+        - null if there are none
     - to do
+        - needs a timeSent field to be added to the message object
 
-### POST /db/groups/:groupId/post
+### POST /db/groups/:group/post
     - adds a new message to a specific group
     - body must be a JSON object with the format:
     {
@@ -106,23 +132,29 @@
     - untested
         - contact me if you have an error with it
 
-### PUT
-    - Edit messages
-    - to do
+### PUT /db/groups/:group/:message/edit
+    - Replaces the content of the specified message
+    - body must be a JSON object with the format:
+    {
+        content: (String)
+    }
+    - untested
+        - contact me if you have an error with it
 
-### DELETE
-    - Message
-    - to do
+### DELETE /db/groups/:group/:message/delete
+    - Removes the specified message
+    - untested
+        - contact me if you have an error with it
 
 ## Reactions
 
-### GET /db/groups/:groupId/:messageId/react/:userId
+### GET /db/groups/:group/:message/react/:user
     - returns the reaction that this user made
         - null if absent
     - untested
         - contact me if you have an error with it
 
-### PUT /db/groups/:groupId/:messageId/react
+### PUT /db/groups/:group/:message/react
     - swaps this user's reaction
     - body must be a JSON object with the format:
     {
@@ -132,7 +164,7 @@
     - untested
         - contact me if you have an error with it
 
-### POST /db/groups/:groupId/:messageId/react
+### POST /db/groups/:group/:message/react
     - adds a reaction
     - body must be a JSON object with the format:
     {
@@ -142,7 +174,7 @@
     - untested
         - contact me if you have an error with it
 
-### DELETE /db/groups/:groupId/:messageId/react
+### DELETE /db/groups/:group/:message/react
     - deletes a reaction
     - body must be a JSON object with the format:
     {
