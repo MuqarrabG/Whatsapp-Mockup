@@ -26,6 +26,79 @@ DataBase.get('/db/users/:user', (req, res) => {
     })
     if(!found)res.status(401).json({error: "No user with that ID exists"})
 })
+DataBase.get(['/db/:user/groups'], (req, res) => {
+    const user = req.params.user
+    const groups = data.groups
+    let usersgroups = []
+    groups.map(c => {
+        c.members.map(m => {
+            if(m.id===Number(user)){
+                usersgroups.push(c)
+            }
+        })
+    })
+    if(usersgroups.length===0){
+        res.send(null)
+    }else {
+        res.json(usersgroups)
+    }
+})
+DataBase.put('/db/users/username', (req, res) => {
+    const body = req.body
+    const user = body.userId
+    let found = false
+    const newUsers = []
+    data.users.map((u) => {
+        if(u.userId===user){
+            found = true
+            const newUser = {
+                userId: u.userId,
+                username: body.username,
+                password: u.password
+            }
+            newUsers.push(newUser)
+        }else{
+            newUsers.push(u)
+        }
+    })
+    if(!found)res.status(401).json({error: "No user with that ID exists"})
+    data.groups = newGroups
+    writeFile(data, (error) => {
+        if(error){
+            res.status(404).send("Username not Changed")
+            return
+        }
+        res.send("Username Changed")
+    })
+})
+DataBase.put('/db/users/password', (req, res) => {
+    const body = req.body
+    const user = body.userId
+    let found = false
+    const newUsers = []
+    data.users.map((u) => {
+        if(u.userId===user){
+            found = true
+            const newUser = {
+                userId: u.userId,
+                username: u.username,
+                password: body.password
+            }
+            newUsers.push(newUser)
+        }else{
+            newUsers.push(u)
+        }
+    })
+    if(!found)res.status(401).json({error: "No user with that ID exists"})
+    data.groups = newGroups
+    writeFile(data, (error) => {
+        if(error){
+            res.status(404).send("Password not Changed")
+            return
+        }
+        res.send("Password Changed")
+    })
+})
 DataBase.post('/db/users', (req, res) => {
     const body = req.body
     const newUser = {
@@ -41,6 +114,27 @@ DataBase.post('/db/users', (req, res) => {
             return
         }
         res.send("User Saved")
+    })
+})
+DataBase.delete('/db/users/:user', (req, res) => {
+    const user = req.params.user
+    let found = false
+    const newUsers = []
+    data.users.map((u) => {
+        if(u.userId===Number(user)){
+            found = true
+        }else{
+            newUsers.push(u)
+        }
+    })
+    if(!found)res.status(401).json({error: "No user with that ID exists"})
+    data.groups = newGroups
+    writeFile(data, (error) => {
+        if(error){
+            res.status(404).send("User not Deleted")
+            return
+        }
+        res.send("User Deleted")
     })
 })
 DataBase.get('/db/groups', (req, res) => {
@@ -81,22 +175,61 @@ DataBase.post('/db/groups', (req, res) => {
         res.send("Group Saved")
     })
 })
-DataBase.get(['/db/:user/groups'], (req, res) => {
-    const user = req.params.user
-    const groups = data.groups
-    let usersgroups = []
-    groups.map(c => {
-        c.members.map(m => {
-            if(m.id===Number(user)){
-                usersgroups.push(c)
-            }
-        })
+DataBase.delete('/db/groups/:group', (req, res) => {
+    const group = req.params.group
+    let found = false
+    const newGroups = []
+    data.groups.map((g) => {
+        if(g.groupId===Number(group)){
+            found = true
+        }else{
+            newGroups.push(g)
+        }
     })
-    if(usersgroups.length===0){
-        res.send(null)
-    }else {
-        res.json(usersgroups)
-    }
+    if(!found)res.status(401).json({error: "No group with that ID exists"})
+    data.groups = newGroups
+    writeFile(data, (error) => {
+        if(error){
+            res.status(404).send("Group not Updated")
+            return
+        }
+        res.send("Group Updated")
+    })
+})
+DataBase.put('/db/groups/:group/rename', (req, res) => {
+    const body = req.body
+    const group = req.params.group
+    const user = body.memberId
+    let foundGroup = false
+    let foundUser = false
+    data.groups.map((g) => {
+        if(g.groupId===Number(group)){
+            foundGroup = true
+            const newMembers = []
+            g.members.map((m) => {
+                if(m.id===Number(user)){
+                    foundUser = true
+                    const newMember = {
+                        id: m.id,
+                        nickname: body.memberName
+                    }
+                    newMembers.push(newMember)
+                }else{
+                    newMembers.push(m)
+                }
+            })
+            g.mambers = newMembers
+        }
+    })
+    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
+    if(!foundUser)res.status(401).json({error: "No user with that ID exists in this group"})
+    writeFile(data, (error) => {
+        if(error){
+            res.status(404).send("Group not Updated")
+            return
+        }
+        res.send("Group Updated")
+    })
 })
 DataBase.post('/db/groups/:group/invite', (req, res) => {
     const body = req.body
@@ -121,6 +254,92 @@ DataBase.post('/db/groups/:group/invite', (req, res) => {
         res.send("Group Updated")
     })
 })
+DataBase.delete('/db/groups/:group/ban/:user', (req, res) => {
+    const body = req.body
+    const group = req.params.group
+    const user = body.memberId
+    let foundGroup = false
+    let foundUser = false
+    data.groups.map((g) => {
+        if(g.groupId===Number(group)){
+            foundGroup = true
+            const newMembers = []
+            g.members.map((m) => {
+                if(m.id===Number(user)){
+                    foundUser = true
+                }else{
+                    newMembers.push(m)
+                }
+            })
+            g.mambers = newMembers
+        }
+    })
+    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
+    if(!foundUser)res.status(401).json({error: "No user with that ID exists in this group"})
+    writeFile(data, (error) => {
+        if(error){
+            res.status(404).send("Group not Updated")
+            return
+        }
+        res.send("Group Updated")
+    })
+})
+DataBase.get('/db/groups/:group/latest/message', (req, res) => {
+    const group = req.params.group
+    let found = false
+    let latest = {messageId: -1,}
+    data.groups.map((g) => {
+        if(g.groupId===Number(group)){
+            found = true
+            g.messages.map((m) => {
+                if((latest.messageId===-1)||(m.time > latest.time)){
+                    latest = m
+                }
+            })
+        }
+    })
+    if(!found)res.status(401).json({error: "No group with that ID exists"})
+    res.json(latest)
+})
+DataBase.put('/db/groups/:group/:message/edit', (req, res) => {
+    const body = req.body
+    const group = req.params.group
+    const message = req.params.message
+    let foundGroup = false
+    let foundMessage = false
+    data.groups.map((g) => {
+        if(g.groupId===Number(group)){
+            foundGroup = true
+            newMessages = []
+            g.messages.map((m) => {
+                if(m.messageId===Number(message)){
+                    foundMessage = true
+                    const newMessage = {
+                        messageId: m.messageId,
+                        content: body.content,
+                        author: m.author,
+                        reactions: m.reactions,
+                        time: m.time
+                    }
+                    newMessages.push(newMessage)
+                }else{
+                    newMessages.push(m)
+                }
+            })
+            if(foundMessage){
+                g.messages = newMessages
+                writeFile(data, (error) => {
+                    if(error){
+                        res.status(404).send("Message not Sent")
+                        return
+                    }
+                    res.send("Message Sent")
+                })}
+        }
+    })
+    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
+    if(!foundMessage)res.status(401).json({error: "No message with that ID exists"})
+})
 DataBase.post('/db/groups/:group/post', (req, res) => {
     const body = req.body
     const group = req.params.group
@@ -132,7 +351,8 @@ DataBase.post('/db/groups/:group/post', (req, res) => {
                 messageId: g.nextMessageId,
                 content: body.content,
                 author: body.authorId,
-                reactions: []
+                reactions: [],
+                time: body.timestamp
             }
             g.messages.push(newMessage)
         }
@@ -145,6 +365,36 @@ DataBase.post('/db/groups/:group/post', (req, res) => {
         }
         res.send("Message Sent")
     })
+})
+DataBase.delete('/db/groups/:group/:message/delete', (req, res) => {
+    const group = req.params.group
+    const message = req.params.message
+    let foundGroup = false
+    let foundMessage = false
+    data.groups.map((g) => {
+        if(g.groupId===Number(group)){
+            foundGroup = true
+            newMessages = []
+            g.messages.map((m) => {
+                if(m.messageId===Number(message)){
+                    foundMessage = true
+                }else{
+                    newMessages.push(m)
+                }
+            })
+            if(foundMessage){
+                g.messages = newMessages
+                writeFile(data, (error) => {
+                    if(error){
+                        res.status(404).send("Message not Removed")
+                        return
+                    }
+                    res.send("Message Removed")
+                })}
+        }
+    })
+    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
+    if(!foundMessage)res.status(401).json({error: "No message with that ID exists"})
 })
 DataBase.get('/db/groups/:group/:message/react/:user', (req, res) => {
     const group = req.params.group
@@ -305,257 +555,5 @@ DataBase.delete('/db/groups/:group/:message/react', (req, res) => {
     if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
     if(!foundUser)res.status(401).json({error: "No user with that ID is part of this group"})
     if(!foundMessage)res.status(401).json({error: "No message with that ID exists"})
-})
-DataBase.put('/db/groups/:group/:message/edit', (req, res) => {
-    const body = req.body
-    const group = req.params.group
-    const message = req.params.message
-    let foundGroup = false
-    let foundMessage = false
-    data.groups.map((g) => {
-        if(g.groupId===Number(group)){
-            foundGroup = true
-            newMessages = []
-            g.messages.map((m) => {
-                if(m.messageId===Number(message)){
-                    foundMessage = true
-                    const newMessage = {
-                        messageId: m.messageId,
-                        content: body.content,
-                        author: m.author,
-                        reactions: m.reactions
-                    }
-                    newMessages.push(newMessage)
-                }else{
-                    newMessages.push(m)
-                }
-            })
-            if(foundMessage){
-                g.messages = newMessages
-                writeFile(data, (error) => {
-                    if(error){
-                        res.status(404).send("Message not Sent")
-                        return
-                    }
-                    res.send("Message Sent")
-                })}
-        }
-    })
-    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
-    if(!foundMessage)res.status(401).json({error: "No message with that ID exists"})
-})
-DataBase.delete('/db/groups/:group/:message/delete', (req, res) => {
-    const group = req.params.group
-    const message = req.params.message
-    let foundGroup = false
-    let foundMessage = false
-    data.groups.map((g) => {
-        if(g.groupId===Number(group)){
-            foundGroup = true
-            newMessages = []
-            g.messages.map((m) => {
-                if(m.messageId===Number(message)){
-                    foundMessage = true
-                }else{
-                    newMessages.push(m)
-                }
-            })
-            if(foundMessage){
-                g.messages = newMessages
-                writeFile(data, (error) => {
-                    if(error){
-                        res.status(404).send("Message not Removed")
-                        return
-                    }
-                    res.send("Message Removed")
-                })}
-        }
-    })
-    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
-    if(!foundMessage)res.status(401).json({error: "No message with that ID exists"})
-})
-DataBase.delete('/db/groups/:group/ban/:user', (req, res) => {
-    const body = req.body
-    const group = req.params.group
-    const user = body.memberId
-    let foundGroup = false
-    let foundUser = false
-    data.groups.map((g) => {
-        if(g.groupId===Number(group)){
-            foundGroup = true
-            const newMembers = []
-            g.members.map((m) => {
-                if(m.id===Number(user)){
-                    foundUser = true
-                }else{
-                    newMembers.push(m)
-                }
-            })
-            g.mambers = newMembers
-        }
-    })
-    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
-    if(!foundUser)res.status(401).json({error: "No user with that ID exists in this group"})
-    writeFile(data, (error) => {
-        if(error){
-            res.status(404).send("Group not Updated")
-            return
-        }
-        res.send("Group Updated")
-    })
-})
-DataBase.put('/db/groups/:group/rename', (req, res) => {
-    const body = req.body
-    const group = req.params.group
-    const user = body.memberId
-    let foundGroup = false
-    let foundUser = false
-    data.groups.map((g) => {
-        if(g.groupId===Number(group)){
-            foundGroup = true
-            const newMembers = []
-            g.members.map((m) => {
-                if(m.id===Number(user)){
-                    foundUser = true
-                    const newMember = {
-                        id: m.id,
-                        nickname: body.memberName
-                    }
-                    newMembers.push(newMember)
-                }else{
-                    newMembers.push(m)
-                }
-            })
-            g.mambers = newMembers
-        }
-    })
-    if(!foundGroup)res.status(401).json({error: "No group with that ID exists"})
-    if(!foundUser)res.status(401).json({error: "No user with that ID exists in this group"})
-    writeFile(data, (error) => {
-        if(error){
-            res.status(404).send("Group not Updated")
-            return
-        }
-        res.send("Group Updated")
-    })
-})
-DataBase.delete('/db/groups/:group', (req, res) => {
-    const group = req.params.group
-    let found = false
-    const newGroups = []
-    data.groups.map((g) => {
-        if(g.groupId===Number(group)){
-            found = true
-        }else{
-            newGroups.push(g)
-        }
-    })
-    if(!found)res.status(401).json({error: "No group with that ID exists"})
-    data.groups = newGroups
-    writeFile(data, (error) => {
-        if(error){
-            res.status(404).send("Group not Updated")
-            return
-        }
-        res.send("Group Updated")
-    })
-})
-DataBase.delete('/db/users/:user', (req, res) => {
-    const user = req.params.user
-    let found = false
-    const newUsers = []
-    data.users.map((u) => {
-        if(u.userId===Number(user)){
-            found = true
-        }else{
-            newUsers.push(u)
-        }
-    })
-    if(!found)res.status(401).json({error: "No user with that ID exists"})
-    data.groups = newGroups
-    writeFile(data, (error) => {
-        if(error){
-            res.status(404).send("User not Deleted")
-            return
-        }
-        res.send("User Deleted")
-    })
-})
-DataBase.put('/db/users/username', (req, res) => {
-    const body = req.body
-    const user = body.userId
-    let found = false
-    const newUsers = []
-    data.users.map((u) => {
-        if(u.userId===user){
-            found = true
-            const newUser = {
-                userId: u.userId,
-                username: body.username,
-                password: u.password
-            }
-            newUsers.push(newUser)
-        }else{
-            newUsers.push(u)
-        }
-    })
-    if(!found)res.status(401).json({error: "No user with that ID exists"})
-    data.groups = newGroups
-    writeFile(data, (error) => {
-        if(error){
-            res.status(404).send("Username not Changed")
-            return
-        }
-        res.send("Username Changed")
-    })
-})
-DataBase.put('/db/users/password', (req, res) => {
-    const body = req.body
-    const user = body.userId
-    let found = false
-    const newUsers = []
-    data.users.map((u) => {
-        if(u.userId===user){
-            found = true
-            const newUser = {
-                userId: u.userId,
-                username: u.username,
-                password: body.password
-            }
-            newUsers.push(newUser)
-        }else{
-            newUsers.push(u)
-        }
-    })
-    if(!found)res.status(401).json({error: "No user with that ID exists"})
-    data.groups = newGroups
-    writeFile(data, (error) => {
-        if(error){
-            res.status(404).send("Password not Changed")
-            return
-        }
-        res.send("Password Changed")
-    })
-})
-DataBase.get('/db/groups/:group/latest/message', (req, res) => {
-    const group = req.params.group
-    let found = false
-    data.groups.map((g) => {
-        if(g.groupId===Number(group)){
-            found = true
-            g.messages.map((m) => {
-                if(m.messageId===Number(message)){
-                    foundMessage = true
-                    m.reactions.map((r) => {
-                        if(Number(user)===r.author){
-                            res.json({icon: r.icon})
-                        }
-                    })
-                    res.json(null)
-                }
-            })
-        }
-    })
-    if(!found)res.status(401).json({error: "No group with that ID exists"})
 })
 module.exports = DataBase

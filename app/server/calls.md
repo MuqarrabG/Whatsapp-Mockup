@@ -12,12 +12,12 @@
         - don't leave a call to this in the finished product
     - returns all the user data for every user
 
-### GET /db/users/:userId
+### GET /db/users/:user
     - authentication to be added
         - calls to this may need to be modified
     - returns the data for a specific user
 
-### GET /db/:userId/groups
+### GET /db/:user/groups
     - authentication to be added
         - calls to this may need to be modified
     - returns all the data for every group a specific user is in
@@ -122,21 +122,22 @@
     - to do
         - needs a timeSent field to be added to the message object
 
-### POST /db/groups/:group/post
-    - adds a new message to a specific group
-    - body must be a JSON object with the format:
-    {
-        content: (String),
-        authorId: (Int)
-    }
-    - untested
-        - contact me if you have an error with it
-
 ### PUT /db/groups/:group/:message/edit
     - Replaces the content of the specified message
     - body must be a JSON object with the format:
     {
         content: (String)
+    }
+    - untested
+        - contact me if you have an error with it
+
+### POST /db/groups/:group/post
+    - adds a new message to a specific group
+    - body must be a JSON object with the format:
+    {
+        content: (String),
+        authorId: (Int),
+        timestamp: (Time)
     }
     - untested
         - contact me if you have an error with it
