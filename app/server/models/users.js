@@ -22,7 +22,7 @@ const doConnect = async () => {
       })
   }
 // call the connection function
-doConnect()
+doConnect() 
 
 const likeSchema = new mongoose.Schema({
     content: String,
