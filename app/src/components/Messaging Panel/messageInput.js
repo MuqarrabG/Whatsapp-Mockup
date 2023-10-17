@@ -1,21 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const MessageInput = ({ sendMessage, socket }) => {
+
   const [message, setMessage] = useState("");
   const textareaRef = useRef(null);
 
-  const handleSendMessage = (e) => {
-    e.preventDefault();
+  const handleSendMessage = (event) => { // handles sending the message via socket.io server event.
+    event.preventDefault();
     if(message.trim() && localStorage.getItem('userName')) {
       socket.emit('message', {
         text: message,
-        name: localStorage.getItem('userName'),
+        name: localStorage.getItem('userName'), // need to change from local storage, only use for development.
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
       });
     }
+    console.log({ userName: localStorage.getItem('userName'), message })
     setMessage('');
   };
+
+  const handleTyping = () => { // function to display if a user is typing.
+    socket.emit('typing', `${localStorage.getItem('userName')} is typing` ) // need to change from local storage, only use for development.
+  }
 
   const handleSendClick = () => {
     if (message.trim()) {
@@ -42,14 +48,16 @@ const MessageInput = ({ sendMessage, socket }) => {
         class="text-3xl cursor-pointer mr-4"
       ></ion-icon>
       <textarea
+        type="text"
         ref={textareaRef}
-        placeholder="Type a message"
+        placeholder="Write message here!"
         value={message}
-        onChange={handleInputChange}
+        onChange={(event) => setMessage(event.target.value)}
         className="flex-grow p-2 border rounded-lg resize-none overflow-auto"
+        onKeyDown={handleTyping}
         style={{ maxHeight: "200px" }} // Limit the growth
       ></textarea>
-      <button onClick={handleSendClick} className="p-2 ml-4">
+      <button onClick={handleSendMessage} className="p-2 ml-4">
         <ion-icon name="send-sharp" class="text-2xl"></ion-icon>
       </button>
     </div>
