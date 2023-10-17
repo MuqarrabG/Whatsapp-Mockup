@@ -21,7 +21,7 @@ function ChatList({ chats }) {
   };
 
   return (
-    <div className="chat-list">
+    <div className="chat-list overflow-auto">
       {chats.map((chat, index) => (
         <button
           key={index}

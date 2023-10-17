@@ -35,7 +35,7 @@
     "server": "nodemon server/server.js",
     "json-server": "json-server -p 3001 --watch server/databaseStructure.json",
     "build:css": "postcss src/tailwind.css -o src/index.css",
-    "dev": "nodemon server/Server.js"
+    "dev": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": [
