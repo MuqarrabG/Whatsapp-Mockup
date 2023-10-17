@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 function Header({ chat }) {
   return (
-    <div className="bg-gray-200 p-4 flex justify-between items-center">
+    <div className="bg-gray-200 p-4 h-20 flex justify-between items-center overflow-auto">
       <div className="flex items-center">
         {chat.user.avatar ? (
           <img
@@ -11,7 +11,7 @@ function Header({ chat }) {
             className="inline-block w-12 h-12 rounded-full mr-4"
           />
         ) : (
-          <span className="inline-inline-block w-12 h-12 rounded-full mr-4 bg-gray-300 flex items-center justify-center w-12 h-12 rounded-full mr-4">
+          <span className="inline-inline-block rounded-full mr-4 bg-gray-300 flex items-center justify-center w-12 h-12 rounded-full mr-4">
             <ion-icon name="people-outline" class="text-3xl"></ion-icon>
           </span>
         )}
