@@ -1,0 +1,10 @@
+GET http://localhost:3001/chats
+
+###
+
+POST http://localhost:3001/chats
+Content-Type: application/json
+
+{
+    "name": "Family Group"
+}
