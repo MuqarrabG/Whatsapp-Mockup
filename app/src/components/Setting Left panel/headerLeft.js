@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {searchOutline} from "ionicons/icons"
 
+
 function HeaderLeft () {
     
     const [query, setQuery] = useState("");
@@ -14,11 +15,12 @@ function HeaderLeft () {
     return (
 
         //  {/* -- search box -- */}
-        <div className="relative block">
-            <input type="text" value={query}
+        
+        <div className="w-1/2">
+            <input  type="text" value={query}
                 onChange={handleInputChange}
                     placeholder="Seach"
-                        className="pl-10 pr-4 py-2 w-full border rounded-md" />
+                        className="pl-10 pr-4 py-2 w-full rounded-md border-0" />
        
         
         {/* <input class="placeholder: italic 
