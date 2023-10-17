@@ -9,7 +9,7 @@ function Sidebar() {
   const userChats = fakeData.chats;
 
   return (
-    <div className="min-w-[30%] bg-blue-200 h-screen overflow-auto border-r border-black">
+    <div className="w-1/3 border flex flex-col border-black">
       <TopBar />
       <SearchBar />
       <ChatList chats={userChats} />

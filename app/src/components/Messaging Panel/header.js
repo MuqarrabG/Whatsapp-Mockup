@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 function Header({ chat }) {
   return (
-    <div className="bg-gray-200 p-4 h-20 flex justify-between items-center overflow-auto">
+    <div className="bg-gray-200 p-4 h-20 flex justify-between items-center">
       <div className="flex items-center">
         {chat.user.avatar ? (
           <img

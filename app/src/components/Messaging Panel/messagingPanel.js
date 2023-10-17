@@ -38,7 +38,7 @@ function MessagingPanel() {
 
   // Add text input
   return (
-    <div className="w-full bg-red-200 h-screen overflow-auto overscroll-contain">
+    <div className="w-2/3 border flex flex-col">
       <Header chat={selectedChat}/>
       <ChatMessages messages={selectedChat.messages} currentUser={selectedChat.user.name}/>
       <MessageInput sendMessage={sendMessage} />
