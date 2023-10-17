@@ -3,7 +3,7 @@ import Header from "./header";
 import ChatMessages from "./chatMessages";
 import MessageInput from "./messageInput";
 
-function MessagingPanel() {
+function MessagingPanel({ messages }) {
   const [selectedChat, setSelectedChat] = useState(() => {
     // Initially set state from localStorage.
     return JSON.parse(localStorage.getItem("selectedChat"));

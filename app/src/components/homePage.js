@@ -6,6 +6,11 @@ import SideBar from "./Sidebar/sideBar.js";
 
 function HomePage({ socket }) {
   const [users, setUsers] = useState([])
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    socket.on('messageResponse', (data) => setMessages([...messages, data]));
+  }, [socket, messages]);
 
   useEffect(() => {
     randomService.getRandomUsers(10).then((response) => {
@@ -19,7 +24,7 @@ function HomePage({ socket }) {
   return (
     <div className="flex w-full h-screen overflow-y-hidden">
       <SideBar />
-      <MessagingPanel socket={socket}/>
+      <MessagingPanel messages={messages} socket={socket}/>
     </div>
   );
 }
