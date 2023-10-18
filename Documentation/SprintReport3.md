@@ -20,4 +20,11 @@
 
 ## {Ben's} Progress
 
+    - Created a sample messaging app to better understand the operation of Socket.io.
+        - Began gathering the current user, and sending messages to the console via the Socket.io server.
+    - Added backend functionality for:
+        - Currently active users
+        - Notified when a user is currently typing (typing status)
+    - Organised sprint report 3
+
 ## {Henry's} Progress

@@ -4,8 +4,13 @@ import * as randomService from "./../services/randomService.js";
 import MessagingPanel from "./Messaging Panel/messagingPanel.js";
 import SideBar from "./Sidebar/sideBar.js";
 
-function HomePage() {
+function HomePage({ socket }) {
   const [users, setUsers] = useState([])
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    socket.on('messageResponse', (data) => setMessages([...messages, data]));
+  }, [socket, messages]);
 
   useEffect(() => {
     randomService.getRandomUsers(10).then((response) => {
@@ -19,7 +24,7 @@ function HomePage() {
   return (
     <div className="flex w-full h-screen overflow-y-hidden">
       <SideBar />
-      <MessagingPanel />
+      <MessagingPanel messages={messages} socket={socket}/>
     </div>
   );
 }
