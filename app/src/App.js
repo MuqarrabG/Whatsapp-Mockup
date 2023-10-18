@@ -8,6 +8,7 @@ import {
 import socketIO from 'socket.io-client'
 import './App.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePage from "./components/homePage"
 import LoginPage from "./components/loginPage";
 import SignupPage from "./components/signupPage";
 import SettingPage from "./components/settingPage"

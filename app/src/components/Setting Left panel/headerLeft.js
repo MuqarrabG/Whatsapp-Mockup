@@ -70,7 +70,7 @@ function HeaderLeft () {
               <ListItemIcon>
                 <NotificationsIcon />
               </ListItemIcon>
-              <ListItemText primary="Notification" />
+              <ListItemText primary="Notification 2" />
             </ListItemButton>
           </ListItem>
 
