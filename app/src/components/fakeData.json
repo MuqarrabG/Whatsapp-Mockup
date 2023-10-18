@@ -26,6 +26,151 @@
           "sender": "Bob",
           "text": "Doing well, thank you!",
           "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Bob",
+          "text": "Doing well, thank you!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Bob",
+          "text": "Doing well, thank you!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Bob",
+          "text": "Doing well, thank you!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Bob",
+          "text": "Doing well, thank you!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "Hey there! How's it going?",
+          "timestamp": "2023-10-06T08:30:00Z"
         }
       ]
     },
@@ -53,6 +198,295 @@
         }
       ]
     },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": {
+        "name": "Bob",
+        "avatar": "https://robohash.org/sapientemolestiaeneque.png?size=300x300&set=set2"
+      },
+      "lastMessage": {
+        "sender": "Alice",
+        "message": "See you tomorrow at 3pm!",
+        "timestamp": "2023-10-06T08:30:00Z"
+      },
+      "messages": [
+        {
+          "sender": "Bob",
+          "text": "When shall we meet tomorrow?",
+          "timestamp": "2023-10-06T08:30:00Z"
+        },
+        {
+          "sender": "Alice",
+          "text": "See you tomorrow at 3pm!",
+          "timestamp": "2023-10-06T08:30:00Z"
+        }
+      ]
+    },
+    
     {
       "id": 3,
       "user": {

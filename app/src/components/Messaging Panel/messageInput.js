@@ -23,7 +23,7 @@ const MessageInput = ({ sendMessage }) => {
   }, [message]);
 
   return (
-    <div className="p-4 bg-gray-200 flex items-end overscroll-contain">
+    <div className="p-4 bg-gray-200 flex items-end overscroll-contain overflow-auto">
       <ion-icon
         icon="attach-sharp"
         class="text-3xl cursor-pointer mr-4"
