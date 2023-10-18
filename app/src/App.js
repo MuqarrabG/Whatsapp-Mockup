@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import socketIO from 'socket.io-client'
 import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from "./components/loginPage";
 import SignupPage from "./components/signupPage";
-import HomePage from "./components/homePage";
 import SettingPage from "./components/settingPage"
 import './index.css';
 // import { useEffect } from "react";
