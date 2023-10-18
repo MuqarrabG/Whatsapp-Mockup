@@ -3,7 +3,7 @@ import Header from "./header";
 import ChatMessages from "./chatMessages";
 import MessageInput from "./messageInput";
 
-function MessagingPanel({ messages }) {
+function MessagingPanel({ socket, messages }) {
   const [selectedChat, setSelectedChat] = useState(() => {
     // Initially set state from localStorage.
     return JSON.parse(localStorage.getItem("selectedChat"));
@@ -41,7 +41,7 @@ function MessagingPanel({ messages }) {
     <div className="min-w-[70%] bg-red-200 h-screen overflow-hidden overscroll-contain">
       <Header chat={selectedChat}/>
       <ChatMessages messages={selectedChat.messages} currentUser={selectedChat.user.name}/>
-      <MessageInput sendMessage={sendMessage} />
+      <MessageInput socket={socket} currentUser={selectedChat.user.name} sendMessage={sendMessage} />
     </div>
   );
 }

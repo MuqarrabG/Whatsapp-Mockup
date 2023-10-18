@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const MessageInput = ({ sendMessage, socket }) => {
+const MessageInput = ({ sendMessage, socket, typingStatus, currentUser }) => {
 
   const [message, setMessage] = useState("");
   const textareaRef = useRef(null);
@@ -10,17 +10,17 @@ const MessageInput = ({ sendMessage, socket }) => {
     if(message.trim() && localStorage.getItem('userName')) {
       socket.emit('message', {
         text: message,
-        name: localStorage.getItem('userName'), // need to change from local storage, only use for development.
+        name: currentUser, // need to change from local storage, only use for development.
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
       });
     }
-    console.log({ userName: localStorage.getItem('userName'), message })
-    setMessage('');
+    console.log({ userName: `${currentUser}`, message })
+    setMessage(''); // Clear the input once the message has been sent.
   };
 
   const handleTyping = () => { // function to display if a user is typing.
-    socket.emit('typing', `${localStorage.getItem('userName')} is typing` ) // need to change from local storage, only use for development.
+    socket.emit('typing', `${currentUser} is typing` ) // need to change from local storage, only use for development.
   }
 
   const handleSendClick = () => {
@@ -47,14 +47,17 @@ const MessageInput = ({ sendMessage, socket }) => {
         icon="attach-sharp"
         class="text-3xl cursor-pointer mr-4"
       ></ion-icon>
+      <div className="message-typing-stauts">
+        <p>{typingStatus}</p>
+      </div>
       <textarea
         type="text"
         ref={textareaRef}
         placeholder="Write message here!"
-        value={message}
-        onChange={(event) => setMessage(event.target.value)}
+        value={message} // Value of the message.
+        onChange={(event) => setMessage(event.target.value)} // Use the input value as the message to send.
         className="flex-grow p-2 border rounded-lg resize-none overflow-auto"
-        onKeyDown={handleTyping}
+        onKeyDown={handleTyping} // Reports when a user has pressed a key.
         style={{ maxHeight: "200px" }} // Limit the growth
       ></textarea>
       <button onClick={handleSendMessage} className="p-2 ml-4">
