@@ -16,7 +16,16 @@
 
 ## {Muqarrab's} Progress
 
+    - Fix the autoscroll issue
+    - Connect MongoDB to backend
+    - Created Schema for Chats, Messages, and User
+    - Researched user auhenication
+
 ## {Andrew's} Progress
+
+    - Finished writing all the calls that the backend will need to respond to
+    - Modified existing calls and jason data file to store the time of messages
+    - Assisted all team members in merging their branches to main.
 
 ## {Ben's} Progress
 
@@ -28,3 +37,6 @@
     - Organised sprint report 3
 
 ## {Henry's} Progress
+
+    - Investigated on setting page layout.
+    - Implemented side bar and buttons.
