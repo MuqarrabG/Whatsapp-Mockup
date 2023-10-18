@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const PORT = 4000;
+const PORT = 4000; // the socket server will run on port 4000
 
 const http = require('http').Server(app);
 const cors = require('cors');
@@ -13,7 +13,7 @@ const socketIO = require('socket.io')(http, {
     }
 });
 
-let users = []; //this will hold a local copy of the actives users gathered from socket.io.
+let users = []; // this will hold a local copy of the actives users gathered from socket.io.
 
 socketIO.on('connection', (socket) => {
     console.log(`${socket.id} user just connected`); // shows when a user connects to the socket server.
