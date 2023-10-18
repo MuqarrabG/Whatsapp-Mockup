@@ -10,7 +10,7 @@ import HeaderRight from "./Setting Right panel/headerRight";
 function settingPage() {
 
     return(
-        <div className="min-w-[30%] bg-blue-200 h-screen overflow-auto border-r border-black">
+        <div className="min-w-[30%] bg-green-200 h-screen overflow-auto border-r border-black">
         
         
         <HeaderLeft />
