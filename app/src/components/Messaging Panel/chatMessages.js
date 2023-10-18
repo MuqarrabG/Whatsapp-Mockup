@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useState } from "react";
 
 function ChatMessages({ messages, currentUser }) {
   return (
-    <div className="p-4 overflow-y-auto h-[86.5vh] bg-red-500">
-      {messages.map((message, index) => (
-        <div
-          key={index}
-          className={`mb-4 max-w-md mx-auto ${
-            message.sender === currentUser ? 'text-right' : 'text-left'
-          }`}
-        >
-          <span className="inline-block bg-gray-200 rounded-lg px-4 py-2 text-sm">
-            {message.text}
-            <span className="font-normal text-xs text-gray-500">
-              {` ${new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
-            </span>
-          </span>
-        </div>
-      ))}
+    <div class="flex-1 overflow-auto bg-[#DAD3CC]">
+      <div className="py-2 px-3">
+        {messages.map((message, index) =>
+          message.sender === currentUser ? (
+            <div key={index} class="flex justify-end mb-2">
+              <div class="rounded py-2 px-3 bg-[#E2F7CB]">
+                <p class="text-sm mt-1">{message.text}</p>
+                <p class="text-right text-xs text-grey-dark mt-1">{` ${new Date(
+                  message.timestamp
+                ).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}`}</p>
+              </div>
+            </div>
+          ) : (
+            <div key={index} class="flex mb-2">
+              <div class="rounded py-2 px-3 bg-[#F2F2F2]">
+                <p class="text-sm text-teal">{message.sender}</p>
+                <p class="text-sm mt-1">
+                  {message.text}
+                </p>
+                <p class="text-right text-xs text-grey-dark mt-1">{` ${new Date(
+                  message.timestamp
+                ).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}`}</p>
+              </div>
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 }
