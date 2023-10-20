@@ -22,9 +22,9 @@ DataBase.put('/db/users/id', (req, res) => {
         }
         else if(body.username){
             let countUserNames = 0
-            if(u.username === body.username) for(u2 in data.users){
+            if(u.username === body.username) data.users.map((u2) => {
                 if(u2.username === u.username) countUserNames += 1
-            }
+            })
             if(countUserNames>=2){
                 res.status(405).json({error: "Too many users with that name exist, please qurey with an email address."})
             }
