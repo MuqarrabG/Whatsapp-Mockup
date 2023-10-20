@@ -69,6 +69,7 @@ DataBase.put('/db/users/username', (req, res) => {
     const user = body.userId
     let found = false
     const newUsers = []
+    const newGroups = []
     data.users.map((u) => {
         if(u.userId===user){
             found = true
@@ -97,6 +98,7 @@ DataBase.put('/db/users/password', (req, res) => {
     const user = body.userId
     let found = false
     const newUsers = []
+    const newGroups = []
     data.users.map((u) => {
         if(u.userId===user){
             found = true
@@ -142,6 +144,7 @@ DataBase.delete('/db/users/:user', (req, res) => {
     const user = req.params.user
     let found = false
     const newUsers = []
+    const newGroups = []
     data.users.map((u) => {
         if(u.userId===Number(user)){
             found = true
@@ -348,7 +351,7 @@ DataBase.put('/db/groups/:group/:message/edit', (req, res) => {
     data.groups.map((g) => {
         if(g.groupId===Number(group)){
             foundGroup = true
-            newMessages = []
+            const newMessages = []
             g.messages.map((m) => {
                 if(m.messageId===Number(message)){
                     foundMessage = true
@@ -412,7 +415,7 @@ DataBase.delete('/db/groups/:group/:message/delete', (req, res) => {
     data.groups.map((g) => {
         if(g.groupId===Number(group)){
             foundGroup = true
-            newMessages = []
+            const newMessages = []
             g.messages.map((m) => {
                 if(m.messageId===Number(message)){
                     foundMessage = true
