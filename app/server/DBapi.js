@@ -31,12 +31,10 @@ DataBase.put("/db/users/id", (req, res) => {
             if (u2.username === u.username) countUserNames += 1;
           });
         if (countUserNames >= 2) {
-          res
-            .status(405)
-            .json({
-              error:
-                "Too many users with that name exist, please qurey with an email address.",
-            });
+          res.status(405).json({
+            error:
+              "Too many users with that name exist, please qurey with an email address.",
+          });
         } else {
           res.json({ id: u.userId });
         }
@@ -118,30 +116,20 @@ DataBase.put("/db/users/username", (req, res) => {
   });
 });
 DataBase.put("/db/users/password", (req, res) => {
-  const body = req.body;
-  const user = body.userId;
-  let found = false;
-  const newUsers = [];
-  const newGroups = [];
-  data.users.map((u) => {
-    if (u.userId === user) {
-      found = true;
-      const newUser = {
-        userId: u.userId,
-        username: u.username,
-        password: body.password,
-      };
-      newUsers.push(newUser);
-    } else {
-      newUsers.push(u);
-    }
-  });
-  if (!found) res.status(401).json({ error: "No user with that ID exists" });
-  data.groups = newGroups;
+  const { userId, password } = req.body;
+  if (!userId || !password) {
+    return res.status(400).send("User ID and password required");
+  }
+  const userIndex = data.users.findIndex((u) => u.userId === userId);
+  if (userIndex === -1) {
+    return res.status(404).json({ error: "No user with that ID exists" });
+  }
+  data.users[userIndex].password = password;
   writeFile(data, (error) => {
     if (error) {
-      res.status(404).send("Password not Changed");
-      return;
+      return res
+        .status(500)
+        .send("Internal Server Error: Password not changed");
     }
     res.send("Password Changed");
   });
@@ -602,11 +590,9 @@ DataBase.post("/db/groups/:group/:message/react", (req, res) => {
           if (m.messageId === Number(message)) {
             m.reactions.map((r) => {
               if (body.authorId === r.author) {
-                res
-                  .status(401)
-                  .json({
-                    error: "This user already has a reaction to this message",
-                  });
+                res.status(401).json({
+                  error: "This user already has a reaction to this message",
+                });
               }
             });
             const newReaction = {
