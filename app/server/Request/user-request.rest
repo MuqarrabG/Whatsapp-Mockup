@@ -13,7 +13,7 @@ GET {{baseurl}}/users/11111
 GET {{baseurl}}/11111/groups
 
 ### POST a new user
-POST {{baseurl}}/users
+POST {{baseurl}}/register/user
 Content-Type: application/json
 
 {

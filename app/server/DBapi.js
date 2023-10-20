@@ -137,13 +137,13 @@ DataBase.put('/db/users/password', (req, res) => {
         res.send("Password Changed")
     })
 })
-DataBase.post('/db/users', (req, res) => {
-    const body = req.body
+DataBase.post('/db/register/user', (req, res) => {
+    const {username, email, password} = req.body
     const newUser = {
         userId: data.nextUserId,
-        username: body.username,
-        password: body.password,
-        email: body.email
+        username: username,
+        password: password,
+        email: email
     }
     data.users.push(newUser)
     data.nextUserId+=1
