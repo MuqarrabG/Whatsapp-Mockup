@@ -12,6 +12,20 @@
         - don't leave a call to this in the finished product
     - returns all the user data for every user
 
+### PUT /db/users/id
+    - changes nothing
+        - should be a get but axios dosen't let get requests contain a body
+    - body must be a json object with the format:
+    {
+        username: (String) (Optional),
+        email: (String) (Optional)
+    }
+    - returns a json object of the user id for the user that matches the sent data with the format:
+    {
+        id: (int)
+    }
+    - returns an error if the user is unfindable or abmiguous
+
 ### GET /db/users/:user
     - authentication to be added
         - calls to this may need to be modified
@@ -67,6 +81,12 @@
     - authentication to be added
         - calls to this may need to be modified
     - returns the data for a specific group
+
+### GET /db/groups/:group/isOneToOne
+    - returns a json object with the format:
+    {
+        chat: (Boolean)
+    }
 
 ### POST /db/groups
     - adds a new group to the list of groups
