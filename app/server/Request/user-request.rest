@@ -1,5 +1,5 @@
 
-@baseurl = http://localhost:3001/db
+@baseurl = http://localhost:3001/api
 
 
 ### Get users

@@ -69,7 +69,7 @@
     - removes a user from the list of users
     - untested
         - contact me if you have an error with it
-
+---
 ## Groups
 
 ### GET /db/groups
