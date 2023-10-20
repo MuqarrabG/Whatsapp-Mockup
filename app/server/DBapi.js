@@ -47,6 +47,21 @@ DataBase.get('/db/users/:user', (req, res) => {
     })
     if(!found)res.status(401).json({error: "No user with that ID exists"})
 })
+DataBase.get('/db/login', (req, res) => {
+    const {email, password} = req.body
+    const users = data.users
+    let found = false
+    users.map(u => {
+        if(u.email===email && u.password===password) {
+            found = true
+            res.json({
+                "username": u.username,
+                "userID": u.userId
+            })
+        }
+    })
+    if(!found)res.status(401).json({error: "Email or Password is wrong"})
+})
 DataBase.get(['/db/:user/groups'], (req, res) => {
     const user = req.params.user
     const groups = data.groups
