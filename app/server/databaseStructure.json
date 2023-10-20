@@ -5,22 +5,26 @@
         {
             "userId": 11111,
             "username": "example user one",
-            "password": "something secure"
+            "password": "something secure",
+            "email": "one.one@numbers.com.au"
         },
         {
             "userId": 22222,
             "username": "example user two",
-            "password": "something else secure"
+            "password": "something else secure",
+            "email": "two.two@numbers.com.au"
         },
         {
             "userId": 33333,
             "username": "example user three",
-            "password": "another secure thing"
+            "password": "another secure thing",
+            "email": "three.three@numbers.com.au"
         },
         {
             "userId": 44444,
             "username": "example user four",
-            "password": "secure thing four"
+            "password": "secure thing four",
+            "email": "four.four@numbers.com.au"
         }
     ],
     "groups": [

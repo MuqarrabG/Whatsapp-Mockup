@@ -22,9 +22,9 @@ DataBase.put('/db/users/id', (req, res) => {
         }
         else if(body.username){
             let countUserNames = 0
-            if(u.username === body.username) data.users.map((u2) => {
+            if(u.username === body.username) for(u2 in data.users){
                 if(u2.username === u.username) countUserNames += 1
-            })
+            }
             if(countUserNames>=2){
                 res.status(405).json({error: "Too many users with that name exist, please qurey with an email address."})
             }
@@ -125,7 +125,8 @@ DataBase.post('/db/users', (req, res) => {
     const newUser = {
         userId: data.nextUserId,
         username: body.username,
-        password: body.password
+        password: body.password,
+        email: body.email
     }
     data.users.push(newUser)
     data.nextUserId+=1
@@ -176,7 +177,7 @@ DataBase.get('/db/groups/:group', (req, res) => {
 DataBase.get('/db/groups/:group/isOneToOne', (req, res) => {
     const group = req.params.group
     let found = false
-    countMembers = 0
+    let countMembers = 0
     data.groups.map((g) => {
         if(g.groupId===Number(group)){
             found = true
