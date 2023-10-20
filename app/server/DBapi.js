@@ -14,6 +14,27 @@ DataBase.get('/db/', (req, res) => {
 DataBase.get('/db/users', (req, res) => {
     res.json(data.users)
 })
+DataBase.put('/db/users/id', (req, res) => {
+    const body = req.body
+    data.users.map((u) => {
+        if(body.email)if(u.email === body.email){
+            res.json({id: u.userId})
+        }
+        else if(body.username){
+            let countUserNames = 0
+            if(u.username === body.username) data.users.map((u2) => {
+                if(u2.username === u.username) countUserNames += 1
+            })
+            if(countUserNames>=2){
+                res.status(405).json({error: "Too many users with that name exist, please qurey with an email address."})
+            }
+            else{
+                res.json({id: u.userId})
+            }
+        }
+    })
+    res.status(405).json({error: "User is un-findble"})
+})
 DataBase.get('/db/users/:user', (req, res) => {
     const user = req.params.user
     const users = data.users
@@ -151,6 +172,22 @@ DataBase.get('/db/groups/:group', (req, res) => {
         }
     })
     if(!found)res.status(401).json({error: "No group with that ID exists"})
+})
+DataBase.get('/db/groups/:group/isOneToOne', (req, res) => {
+    const group = req.params.group
+    let found = false
+    countMembers = 0
+    data.groups.map((g) => {
+        if(g.groupId===Number(group)){
+            found = true
+            g.members.map((m) => {
+                countMembers += 1
+            })
+        }
+    })
+    if(!found)res.status(401).json({error: "No group with that ID exists"})
+    if(countMembers===2)res.json({chat: true})
+    res.json({chat: false})
 })
 DataBase.post('/db/groups', (req, res) => {
     const body = req.body
