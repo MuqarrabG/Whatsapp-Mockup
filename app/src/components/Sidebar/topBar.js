@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as randomService from "./../../services/randomService.js";
+import { useNavigate } from 'react-router-dom';
+import makeToast from "../Toaster.js";
 
 function TopBar() {
   //fetch some random user
@@ -21,11 +23,14 @@ function TopBar() {
 
   return (
     <div className="bg-gray-200 p-4 flex justify-between items-center">
-      <img
-        src={user.avatar}
-        alt="User Profile"
-        className="rounded-full h-12 w-12 object-cover"
-      />
+      <div className="flex items-center">
+        <img
+          src={user.avatar}
+          alt="User Profile"
+          className="rounded-full h-12 w-12 object-cover"
+        />
+        <p className="ml-3 font-bold">MOnkey</p>
+      </div>
       <DropdownMenu />
     </div>
   );
@@ -34,6 +39,7 @@ function TopBar() {
 function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate()
 
   const handleMenuClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -44,6 +50,12 @@ function DropdownMenu() {
       setIsOpen(false);
     }
   };
+
+  const handleLogout = () => {
+    localStorage.clear()
+    makeToast("success", "User Logged Out")
+    navigate("/")
+  }
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -107,7 +119,7 @@ function DropdownMenu() {
               Settings
             </a>
             <a
-              href="#"
+              onClick={handleLogout}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >

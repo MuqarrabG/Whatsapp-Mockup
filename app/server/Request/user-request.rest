@@ -10,7 +10,7 @@ GET {{baseurl}}/users
 GET {{baseurl}}/users/11111
 
 ### GET user groups
-GET {{baseurl}}/1111/groups
+GET {{baseurl}}/11111/groups
 
 ### POST a new user
 ### This request would fail unless you change the email

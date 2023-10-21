@@ -35,7 +35,7 @@ function SignupPage() {
       makeToast("success", response.data)
       navigate('/')
     }).catch((error) => {
-      console.log(error)
+      //console.log(error)
       makeToast("error", error.response.data)
     })
     //console.log(credentials);

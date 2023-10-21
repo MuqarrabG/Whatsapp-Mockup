@@ -21,7 +21,7 @@ function LoginPage() {
       setLocalStorage("loggedUser", response.data)
       navigate('/home')
     }).catch((error) => {
-      console.log(error)
+      //console.log(error)
       makeToast("error", error.response.data.error)
     })
     //console.log(credentials);
