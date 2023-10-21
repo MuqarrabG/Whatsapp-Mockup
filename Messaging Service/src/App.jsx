@@ -2,8 +2,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  useParams,
 } from "react-router-dom";
 import socketIO from 'socket.io-client'
 import './App.css';
@@ -11,8 +9,7 @@ import './App.css';
 import HomePage from "./components/homePage"
 import LoginPage from "./components/loginPage";
 import SignupPage from "./components/signupPage";
-import SettingPage from "./components/settingPage"
-import './index.css';
+//import SettingPage from "./components/settingPage"
 // import { useEffect } from "react";
 // import axios from "axios";
 

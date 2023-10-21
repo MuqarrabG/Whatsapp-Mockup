@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 // src/LoginPage.js
-import React, { useEffect, useState } from "react";
-import makeToast from "./Toaster";
-import { loginUser } from "../services/api";
-import { response } from "express";
+import { useState } from "react";
+// import makeToast from "./Toaster";
+// import { loginUser } from "../services/api";
+// import { response } from "express";
 function LoginPage() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
@@ -65,7 +66,7 @@ function LoginPage() {
           </div>
           <div className="pt-8 text-base font-semibold leading-7">
             <p className="text-gray-900">
-              Don't have an account yet?{" "}
+               Don't have an account yet?{" "}
               <a
                 href="/signup"
                 className="font-bold text-lime-500 hover:text-lime-600"

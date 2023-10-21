@@ -1,0 +1,8 @@
+
+@baseurl = http://localhost:3001/api
+
+### GET all the groups
+GET {{baseurl}}/groups
+
+### GET group by ID
+GET {{baseurl}}/groups/1

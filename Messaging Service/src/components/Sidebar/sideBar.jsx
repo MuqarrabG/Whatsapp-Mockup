@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { logoReact, menuSharp } from "ionicons/icons";
 import TopBar from "./topBar";
 import SearchBar from "./searchBar";
 import ChatList from "./chatList";
-import fakeData from "./../fakeData.json"
+import fakeData from "../fakeData.json"
 
 function Sidebar() {
   const userChats = fakeData.chats;
