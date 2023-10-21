@@ -9,16 +9,16 @@
 
 function settingPage() {
 
-    return(
-        <div className="min-w-[30%] bg-green-200 h-screen overflow-auto border-r border-black">
+//     return(
+//         <div className="min-w-[30%] bg-green-200 h-screen overflow-auto border-r border-black">
         
         
-        <HeaderLeft />
-        <Divider></Divider>
-        <HeaderRight />
-      </div>
-    );
-    }
+//         <HeaderLeft />
+//         <Divider></Divider>
+//         <HeaderRight />
+//       </div>
+//     );
+//     }
         
 
         // <div className="max-w-none w-full max-h-28 grid grid-cols-2 divide-x-1/3 flex-item-centre font-bold text-3xl bg-gray-300 shadow-md">
@@ -51,6 +51,6 @@ function settingPage() {
            
 
 //      )
-// }
+}
 
 export default settingPage

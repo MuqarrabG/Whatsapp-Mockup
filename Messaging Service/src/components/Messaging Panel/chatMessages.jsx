@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 function ChatMessages({ messages, currentUser }) {
   return (
@@ -24,9 +25,7 @@ function ChatMessages({ messages, currentUser }) {
             <div key={index} className="flex mb-2">
               <div className="rounded py-2 px-3 bg-[#F2F2F2]">
                 <p className="text-sm text-teal">{message.sender}</p>
-                <p className="text-sm mt-1">
-                  {message.text}
-                </p>
+                <p className="text-sm mt-1">{message.text}</p>
                 <p className="text-right text-xs text-grey-dark mt-1">{` ${new Date(
                   message.timestamp
                 ).toLocaleTimeString([], {
@@ -42,15 +41,4 @@ function ChatMessages({ messages, currentUser }) {
   );
 }
 
-export default ChatMessages.propTypes = {
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      sender: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-      timestamp: PropTypes.number.isRequired,
-      // Add any other keys with their types here if your message objects have more keys
-    })
-  ).isRequired,
-  currentUser: PropTypes.string.isRequired,
-};
-
+export default ChatMessages;
