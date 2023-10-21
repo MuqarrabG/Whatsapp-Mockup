@@ -7,7 +7,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';import DraftsIcon from '@mui/icons-material/Drafts';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import Person2Icon from '@mui/icons-material/Person2';
 
 
 import {searchOutline} from "ionicons/icons"
@@ -32,16 +34,16 @@ function HeaderLeft () {
             <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <LogoutIcon />
+                <Person2Icon />
               </ListItemIcon>
-              <ListItemText primary="Logout" />
+              {/* <ListItemText primary="Logout" /> */}
             </ListItemButton>
           </ListItem>
             </List>
 
 
           {/* -- search box -- */}
-        <div className="w-1/4">
+        <div className="w-4/4">
             <input  type="text" value={query}
                 onChange={handleInputChange}
                     placeholder="Search"
