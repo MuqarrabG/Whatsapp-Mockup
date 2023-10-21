@@ -1,14 +1,13 @@
 // src/LoginPage.js
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from "../services/api";
+import makeToast from "./Toaster";
 
 function SignupPage() {
   const [credentials, setCredentials] = useState({ email: "", username: "", password: "" ,confirmPassword: ""});
   const [isComplaint, setIsComplaint] = useState(false);
   const navigate = useNavigate()
-
-  
-
 
   const hasUpperCase = (password) => /[A-Z]/.test(password);
   const hasLowerCase = (password) => /[a-z]/.test(password);
@@ -32,8 +31,14 @@ function SignupPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Authenticate the user using an API
-    console.log(credentials);
+    registerUser(credentials).then((response) => {
+      makeToast("success", response.data)
+      navigate('/')
+    }).catch((error) => {
+      console.log(error)
+      makeToast("error", error.response.data)
+    })
+    //console.log(credentials);
   };
 
   return (
