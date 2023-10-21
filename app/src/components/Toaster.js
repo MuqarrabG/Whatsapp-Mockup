@@ -1,3 +1,6 @@
+//Not our code
+//Author https://github.com/ankitkarna99/chat-cosey-front/blob/master/src/Toaster.js
+
 import Swal from "sweetalert2";
 
 const Toast = Swal.mixin({

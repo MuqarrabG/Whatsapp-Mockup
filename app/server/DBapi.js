@@ -179,7 +179,7 @@ DataBase.post("/api/register/user", (req, res) => {
         res.status(500).send("Internal Server Error: User not saved");
         return;
       }
-      res.send("User Saved");
+      res.send("User Registered");
     });
   }
 });

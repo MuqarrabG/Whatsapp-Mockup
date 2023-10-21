@@ -1,14 +1,14 @@
 // src/LoginPage.js
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function SignupPage() {
   const [credentials, setCredentials] = useState({ email: "", username: "", password: "" ,confirmPassword: ""});
-  const [isHovering, setIsHovering] = useState(false);
   const [isComplaint, setIsComplaint] = useState(false);
+  const navigate = useNavigate()
 
-  if (isHovering) {
-    console.log("hovering");
-  }
+  
+
 
   const hasUpperCase = (password) => /[A-Z]/.test(password);
   const hasLowerCase = (password) => /[a-z]/.test(password);
