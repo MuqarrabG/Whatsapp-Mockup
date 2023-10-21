@@ -3,16 +3,16 @@ import * as randomService from "./../../services/randomService.js";
 import { useNavigate } from 'react-router-dom';
 import makeToast from "../Toaster.js";
 
-function TopBar() {
+function TopBar({user}) {
   //fetch some random user
-  const [user, setUser] = useState([]);
+  const [userProfile, setUserProfile] = useState([]);
 
   useEffect(() => {
     randomService
       .getUser()
       .then((response) => {
         console.log(response);
-        setUser(response);
+        setUserProfile(response);
       })
       .catch((error) => {
         console.error("Failed to fetch users:", error);
@@ -25,11 +25,11 @@ function TopBar() {
     <div className="bg-gray-200 p-4 flex justify-between items-center">
       <div className="flex items-center">
         <img
-          src={user.avatar}
+          src={userProfile.avatar}
           alt="User Profile"
           className="rounded-full h-12 w-12 object-cover"
         />
-        <p className="ml-3 font-bold">MOnkey</p>
+        <p className="ml-3 font-bold">{user.username}</p>
       </div>
       <DropdownMenu />
     </div>
@@ -40,6 +40,11 @@ function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate()
+
+  const [showModal, setShowModal] = useState(false);
+
+  // Function to toggle the modal's visibility
+  const toggleModal = () => setShowModal(!showModal);
 
   const handleMenuClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -52,7 +57,7 @@ function DropdownMenu() {
   };
 
   const handleLogout = () => {
-    localStorage.clear()
+    localStorage.removeItem("loggedUser")
     makeToast("success", "User Logged Out")
     navigate("/")
   }
@@ -84,7 +89,7 @@ function DropdownMenu() {
             aria-labelledby="options-menu"
           >
             <a
-              href="#"
+              onClick={toggleModal}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
@@ -125,6 +130,17 @@ function DropdownMenu() {
             >
               Log out
             </a>
+            {showModal && (
+        <div className="modal">
+          {/* Modal content */}
+          <div className="modal-content">
+            <span className="close" onClick={toggleModal}>
+              &times;
+            </span>
+            <p>Here you can add your form or other content to create a group chat.</p>
+          </div>
+        </div>
+      )}
           </div>
         </div>
       )}

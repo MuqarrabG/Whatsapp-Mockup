@@ -14,15 +14,15 @@ function HomePage({ socket }) {
   const navigate = useNavigate()
 
   //This prevent unlogged in user to access the app
-  // useEffect(() => {
-  //   const loggedUser = getLocalStorage("loggedUser");
-  //   if (loggedUser) {
-  //     setUser(loggedUser);
-  //   } else {
-  //     makeToast("error", "Please Login to Access the app");
-  //     navigate('/');
-  //   }
-  // }, [navigate]); 
+  useEffect(() => {
+    const loggedUser = getLocalStorage("loggedUser");
+    if (loggedUser) {
+      setUser(loggedUser);
+    } else {
+      makeToast("error", "Please Login to Access the app");
+      navigate('/');
+    }
+  }, [navigate]); 
 
   useEffect(() => {
     socket.on('messageResponse', (data) => setMessages([...messages, data]));
@@ -39,7 +39,7 @@ function HomePage({ socket }) {
 
   return (
     <div className="flex w-full h-screen overflow-y-hidden">
-      <SideBar />
+      <SideBar user={user} />
       <MessagingPanel messages={messages} socket={socket}/>
     </div>
   );
