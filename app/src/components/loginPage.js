@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import makeToast from "./Toaster";
 import { loginUser } from "../services/api";
-import { response } from "express";
 function LoginPage() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
