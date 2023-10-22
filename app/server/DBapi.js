@@ -19,10 +19,10 @@ DataBase.get("/api/users", (req, res) => {
   res.json(data.users);
 });
 DataBase.get("/api/users-meta/:id", (req, res) => {
-  const userId = Number(req.params.id); // Extracting the "id" from the request parameters
+  const userId = Number(req.params.id);
   //console.log(data.users)
   const extractNameID = data.users
-    .filter(user => user.userId !== userId ) // Filter out the user that matches the requested ID
+    .filter(user => user.userId !== userId ) 
     .map(user => {
       return {
         username: user.username,
@@ -30,7 +30,7 @@ DataBase.get("/api/users-meta/:id", (req, res) => {
       };
     });
 
-  res.json(extractNameID); // This will return users except for the one with the specified ID
+  res.json(extractNameID);
 });
 
 

@@ -47,7 +47,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
   }, [open]);
 
   const getUsers = async () => {
-    getAvailableUsers().then((res) => {
+    getAvailableUsers(user.userId).then((res) => {
       const { data } = res;
       setUsers(data || []);
     });

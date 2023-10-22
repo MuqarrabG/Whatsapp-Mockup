@@ -28,8 +28,8 @@ const createUserChat = () => {
     
 }
 
-const getAvailableUsers = () => {
-    return axios.get(`${baseURL}users-meta`)
+const getAvailableUsers = (id) => {
+    return axios.get(`${baseURL}users-meta/${id}`)
 }
 
 export { loginUser, registerUser, createGroupChat, createUserChat, getAvailableUsers };
