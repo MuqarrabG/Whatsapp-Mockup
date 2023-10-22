@@ -6,3 +6,21 @@ GET {{baseurl}}/groups
 
 ### GET group by ID
 GET {{baseurl}}/groups/1
+
+### POST make new Group test
+POST {{baseurl}}/group
+Content-Type: application/json
+
+ {
+  "name": "Study Group",
+  "members": [
+    {
+      "id": "1",
+      "nickname": "alice"
+    },
+    {
+      "id": "2",
+      "nickname": "bob"
+    }
+  ]
+}

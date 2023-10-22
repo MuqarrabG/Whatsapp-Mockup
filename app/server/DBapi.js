@@ -275,6 +275,18 @@ DataBase.post("/api/group", (req, res) => {
   }
   // Determine if it's a group based on the number of members
   const isGroup = members.length > 2;
+  if (!isGroup) {
+    const existingGroup = data.groups.find(group => {
+      // If the group is not a group chat and has the same members, consider it an existing chat
+      return !group.isGroup && members.length === 2 &&
+        group.members.find(m => m.id === members[0].id) && 
+        group.members.find(m => m.id === members[1].id);
+    });
+
+    if (existingGroup) {
+      return res.status(400).json({ error: "A chat between these members already exists." });
+    }
+  }
   const newGroup = {
     groupId: data.nextGroupId++,
     name: name,

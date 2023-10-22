@@ -21,9 +21,9 @@ POST {{baseurl}}/register/user
 Content-Type: application/json
 
 {
-    "username": "Thruster69",
-    "email": "thruster69@gmail.com",
-    "password": "thisisfucked"
+    "username": "userone",
+    "email": "userone@example.com",
+    "password": "password1"
 }
 
 ### Login
