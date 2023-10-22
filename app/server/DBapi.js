@@ -18,6 +18,16 @@ DataBase.get("/api/", (req, res) => {
 DataBase.get("/api/users", (req, res) => {
   res.json(data.users);
 });
+DataBase.get("/api/users-meta", (req, res) => {
+  const extractNameID = data.users.map(user => {
+    return {
+      username: user.username,
+      userId: user.userId
+    };
+  });
+  res.json(extractNameID);
+});
+
 //What is this one doing?
 DataBase.put("/api/users/id", (req, res) => {
   const body = req.body;

@@ -20,4 +20,16 @@ const registerUser = (credentials) => {
   });
 };
 
-export { loginUser, registerUser };
+const createGroupChat = () => {
+
+}
+
+const createUserChat = () => {
+    
+}
+
+const getAvailableUsers = () => {
+    return axios.get(`${baseURL}users-meta`)
+}
+
+export { loginUser, registerUser, createGroupChat, createUserChat, getAvailableUsers };

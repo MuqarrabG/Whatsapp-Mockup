@@ -19,8 +19,6 @@ function TopBar({user}) {
       });
   }, []);
 
-  //TODO Make a dropdown menu
-
   return (
     <div className="bg-gray-200 p-4 flex justify-between items-center">
       <div className="flex items-center">
@@ -61,6 +59,9 @@ function DropdownMenu() {
     makeToast("success", "User Logged Out")
     navigate("/")
   }
+  const handleCreateChatClick = () => {
+    window.dispatchEvent(new Event("createChat"));
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -89,7 +90,7 @@ function DropdownMenu() {
             aria-labelledby="options-menu"
           >
             <a
-              onClick={toggleModal}
+              onClick={handleCreateChatClick}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
@@ -117,7 +118,6 @@ function DropdownMenu() {
               Block user
             </a>
             <a
-              href="#"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
@@ -130,17 +130,6 @@ function DropdownMenu() {
             >
               Log out
             </a>
-            {showModal && (
-        <div className="modal">
-          {/* Modal content */}
-          <div className="modal-content">
-            <span className="close" onClick={toggleModal}>
-              &times;
-            </span>
-            <p>Here you can add your form or other content to create a group chat.</p>
-          </div>
-        </div>
-      )}
           </div>
         </div>
       )}

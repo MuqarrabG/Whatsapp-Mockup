@@ -9,6 +9,9 @@ GET {{baseurl}}/users
 ### GET user by ID
 GET {{baseurl}}/users/11111
 
+### GET returns user username and userID
+GET {{baseurl}}/users-meta
+
 ### GET user groups
 GET {{baseurl}}/11111/groups
 

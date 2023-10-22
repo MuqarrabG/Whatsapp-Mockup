@@ -7,20 +7,20 @@ const MessageInput = ({ sendMessage, socket, typingStatus, currentUser }) => {
 
   const handleSendMessage = (event) => { // handles sending the message via socket.io server event.
     event.preventDefault();
-    if(message.trim() && localStorage.getItem('userName')) {
-      socket.emit('message', {
-        text: message,
-        name: currentUser, // need to change from local storage, only use for development.
-        id: `${socket.id}${Math.random()}`,
-        socketID: socket.id,
-      });
-    }
-    console.log({ userName: `${currentUser}`, message })
-    setMessage(''); // Clear the input once the message has been sent.
+    // if(message.trim() && localStorage.getItem('userName')) {
+    //   socket.emit('message', {
+    //     text: message,
+    //     name: currentUser, // need to change from local storage, only use for development.
+    //     id: `${socket.id}${Math.random()}`,
+    //     socketID: socket.id,
+    //   });
+    // }
+    // console.log({ userName: `${currentUser}`, message })
+    // setMessage(''); // Clear the input once the message has been sent.
   };
 
   const handleTyping = () => { // function to display if a user is typing.
-    socket.emit('typing', `${currentUser} is typing` ) // need to change from local storage, only use for development.
+    // socket.emit('typing', `${currentUser} is typing` ) // need to change from local storage, only use for development.
   }
 
   const handleSendClick = () => {
