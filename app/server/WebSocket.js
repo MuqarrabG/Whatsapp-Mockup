@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const PORT = 4000; // the socket server will run on port 4000
+const PORT = 3001; // the socket server will run on port 4000
 
 const http = require('http').Server(app);
 const cors = require('cors');

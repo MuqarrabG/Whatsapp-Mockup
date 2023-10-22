@@ -1,31 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as randomService from "./../../services/randomService.js";
+import { useNavigate } from 'react-router-dom';
+import makeToast from "../Toaster.js";
 
-function TopBar() {
+function TopBar({user}) {
   //fetch some random user
-  const [user, setUser] = useState([]);
+  const [userProfile, setUserProfile] = useState([]);
 
   useEffect(() => {
     randomService
       .getUser()
       .then((response) => {
         console.log(response);
-        setUser(response);
+        setUserProfile(response);
       })
       .catch((error) => {
         console.error("Failed to fetch users:", error);
       });
   }, []);
 
-  //TODO Make a dropdown menu
-
   return (
     <div className="bg-gray-200 p-4 flex justify-between items-center">
-      <img
-        src={user.avatar}
-        alt="User Profile"
-        className="rounded-full h-12 w-12 object-cover"
-      />
+      <div className="flex items-center">
+        <img
+          src={userProfile.avatar}
+          alt="User Profile"
+          className="rounded-full h-12 w-12 object-cover"
+        />
+        <p className="ml-3 font-bold">{user.username}</p>
+      </div>
       <DropdownMenu />
     </div>
   );
@@ -34,6 +37,12 @@ function TopBar() {
 function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate()
+
+  const [showModal, setShowModal] = useState(false);
+
+  // Function to toggle the modal's visibility
+  const toggleModal = () => setShowModal(!showModal);
 
   const handleMenuClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -43,6 +52,15 @@ function DropdownMenu() {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedUser")
+    makeToast("success", "User Logged Out")
+    navigate("/")
+  }
+  const handleCreateChatClick = () => {
+    window.dispatchEvent(new Event("createChat"));
   };
 
   useEffect(() => {
@@ -72,7 +90,7 @@ function DropdownMenu() {
             aria-labelledby="options-menu"
           >
             <a
-              href="#"
+              onClick={handleCreateChatClick}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
@@ -100,14 +118,13 @@ function DropdownMenu() {
               Block user
             </a>
             <a
-              href="#"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
               Settings
             </a>
             <a
-              href="#"
+              onClick={handleLogout}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >

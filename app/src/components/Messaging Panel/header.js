@@ -1,21 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function Header({ chat }) {
+function Header({ chat, currentUser }) {
   return (
     <div className="bg-gray-200 p-4 h-20 flex justify-between items-center">
       <div className="flex items-center">
-        {chat.user.avatar ? (
-          <img
-            src={chat.user.avatar}
-            alt={`Avatar of ${chat.name}`}
-            className="inline-block w-12 h-12 rounded-full mr-4"
-          />
-        ) : (
-          <span className="inline-inline-block rounded-full mr-4 bg-gray-300 flex items-center justify-center w-12 h-12 rounded-full mr-4">
+        {chat.isGroup ? (
+          <span className="inline-block rounded-full mr-4 bg-gray-300 flex items-center justify-center w-12 h-12">
             <ion-icon name="people-outline" class="text-3xl"></ion-icon>
           </span>
+        ) : (
+          <span className="inline-block rounded-full mr-4 bg-gray-300 flex items-center justify-center w-12 h-12">
+            <ion-icon name="person-outline" class="text-3xl"></ion-icon>
+          </span>
         )}
-        <span className="font-medium text-xl">{chat.user.name}</span>
+        <span className="font-medium text-xl">
+          {chat.isGroup 
+            ? chat.name 
+            : chat.members.find((member) => member.id !== currentUser?.userId)?.nickname || "Unknown User" 
+          // Use optional chaining to avoid potential errors if currentUser or other objects are undefined.
+          }
+        </span>
       </div>
       <DropdownMenu />
     </div>
