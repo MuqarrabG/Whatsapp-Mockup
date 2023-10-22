@@ -78,6 +78,7 @@ function HomePage({socket}) {
   return (
     <>
       <AddChatModal
+        user={user}
         open={openAddChat}
         onClose={() => {
           setOpenAddChat(false);

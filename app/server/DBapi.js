@@ -18,15 +18,21 @@ DataBase.get("/api/", (req, res) => {
 DataBase.get("/api/users", (req, res) => {
   res.json(data.users);
 });
-DataBase.get("/api/users-meta", (req, res) => {
-  const extractNameID = data.users.map(user => {
-    return {
-      username: user.username,
-      userId: user.userId
-    };
-  });
-  res.json(extractNameID);
+DataBase.get("/api/users-meta/:id", (req, res) => {
+  const userId = Number(req.params.id); // Extracting the "id" from the request parameters
+  //console.log(data.users)
+  const extractNameID = data.users
+    .filter(user => user.userId !== userId ) // Filter out the user that matches the requested ID
+    .map(user => {
+      return {
+        username: user.username,
+        userId: user.userId
+      };
+    });
+
+  res.json(extractNameID); // This will return users except for the one with the specified ID
 });
+
 
 //What is this one doing?
 DataBase.put("/api/users/id", (req, res) => {
@@ -76,7 +82,9 @@ DataBase.get("/api/:user/groups", (req, res) => {
     .map((group) => {
       let lastMessage = null;
       if (group.messages && group.messages.length > 0) {
-        const sortedMessages = group.messages.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const sortedMessages = group.messages
+          .slice()
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         lastMessage = sortedMessages[0];
       }
       return {
@@ -376,7 +384,9 @@ DataBase.post("/api/groups/:group/invite", (req, res) => {
   group.members.push(newMember);
   writeFile(data, (error) => {
     if (error) {
-      return res.status(500).send("Internal Server Error: Unable to update group");
+      return res
+        .status(500)
+        .send("Internal Server Error: Unable to update group");
     }
     res.status(200).send("Group Updated");
   });
@@ -386,7 +396,9 @@ DataBase.delete("/api/groups/:group/ban/:user", (req, res) => {
   const groupId = Number(req.params.group);
   const userId = Number(req.params.user);
   if (!groupId || !userId) {
-    return res.status(400).json({ error: "Valid group ID and user ID are required" });
+    return res
+      .status(400)
+      .json({ error: "Valid group ID and user ID are required" });
   }
   const group = data.groups.find((g) => g.groupId === groupId);
   if (!group) {

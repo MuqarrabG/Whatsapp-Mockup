@@ -18,7 +18,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 
-const AddChatModal = ({ open, onClose, onSuccess }) => {
+const AddChatModal = ({ user, open, onClose, onSuccess }) => {
   const [users, setUsers] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [isGroupChat, setIsGroupChat] = useState(false);
@@ -71,7 +71,7 @@ const AddChatModal = ({ open, onClose, onSuccess }) => {
     //   alert
     // );
 
-    console.log("New chat created");
+    console.log("New chat created", isGroupChat, selectedUserId);
   };
 
   const createNewGroupChat = async () => {

@@ -10,7 +10,7 @@ GET {{baseurl}}/users
 GET {{baseurl}}/users/11111
 
 ### GET returns user username and userID
-GET {{baseurl}}/users-meta
+GET {{baseurl}}/users-meta/11117
 
 ### GET user groups
 GET {{baseurl}}/11111/groups
