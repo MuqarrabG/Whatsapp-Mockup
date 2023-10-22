@@ -20,15 +20,22 @@ const registerUser = (credentials) => {
   });
 };
 
-const createChat = (name , members) => {
-    return axios.post(`${baseURL}group`, {
-        name,
-        members,
-    })
-}
+const createChat = (name, members) => {
+  return axios.post(`${baseURL}group`, {
+    name,
+    members,
+  });
+};
 
 const getAvailableUsers = (id) => {
-    return axios.get(`${baseURL}users-meta/${id}`)
+  return axios.get(`${baseURL}users-meta/${id}`);
+};
+
+const getUserChats = (id) => {
+  return axios.get(`${baseURL}${id}/groups`);
+};
+const getChatById = (id) => {
+    return axios.get(`${baseURL}groups/${id}`)
 }
 
-export { loginUser, registerUser, createChat , getAvailableUsers };
+export { loginUser, registerUser, createChat, getAvailableUsers, getUserChats, getChatById };

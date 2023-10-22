@@ -72,8 +72,9 @@ DataBase.get("/api/users/:user", (req, res) => {
   res.json(user);
 });
 //GroupList with specific content for sidebar might not like this approach consult with Andrew
-DataBase.get("/api/:user/groups", (req, res) => {
-  const userId = Number(req.params.user);
+DataBase.get("/api/:id/groups", (req, res) => {
+  const userId = Number(req.params.id);
+  console.log(userId)
   if (!userId) {
     return res.status(400).json({ error: "User ID must be a valid number" });
   }
@@ -94,10 +95,11 @@ DataBase.get("/api/:user/groups", (req, res) => {
           ? {
               messageId: lastMessage.messageId,
               content: lastMessage.content,
-              authorId: lastMessage.authorId,
+              author: lastMessage.author,
               createdAt: lastMessage.createdAt,
             }
           : null, //return null if no messages
+        members: group.members,
         isGroup: group.isGroup,
       };
     });
@@ -120,7 +122,7 @@ DataBase.post("/api/login", (req, res) => {
     return res.status(401).json({ error: "Email or Password is wrong" });
   }
   res.json({
-    userID: user.userId,
+    userId: user.userId,
     username: user.username,
   });
 });
@@ -226,6 +228,7 @@ DataBase.get("/api/groups", (req, res) => {
 //refactored
 DataBase.get("/api/groups/:group", (req, res) => {
   const groupId = Number(req.params.group);
+  console.log(groupId)
   if (!groupId) {
     return res.status(400).json({ error: "A valid group ID is required" });
   }

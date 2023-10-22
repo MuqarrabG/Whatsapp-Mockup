@@ -93,6 +93,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
     setSelectedUser([]);
     setGroupName("");
     setGroupParticipants([]);
+    setMembers([])
     setIsGroupChat(false);
     onClose();
   };
