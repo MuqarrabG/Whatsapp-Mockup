@@ -284,7 +284,7 @@ DataBase.post("/api/group", (req, res) => {
     });
 
     if (existingGroup) {
-      return res.status(400).json({ error: "A chat between these members already exists." });
+      return res.status(400).json({ error: "A chat between "+members[0].nickname+" and "+members[1].nickname+" already exists." });
     }
   }
   const newGroup = {
