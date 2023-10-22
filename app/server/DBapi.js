@@ -302,7 +302,10 @@ DataBase.post("/api/group", (req, res) => {
         .status(500)
         .send("Internal Server Error: Unable to save group");
     }
-    res.status(201).json(newGroup);
+    if(isGroup) {
+      res.status(201).json("New Group Chat Created")
+    }
+    res.status(201).json("New Chat Created");
   });
 });
 //refactored

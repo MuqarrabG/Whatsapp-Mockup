@@ -20,16 +20,15 @@ const registerUser = (credentials) => {
   });
 };
 
-const createGroupChat = () => {
-
-}
-
-const createUserChat = () => {
-    
+const createChat = (name , members) => {
+    return axios.post(`${baseURL}group`, {
+        name,
+        members,
+    })
 }
 
 const getAvailableUsers = (id) => {
     return axios.get(`${baseURL}users-meta/${id}`)
 }
 
-export { loginUser, registerUser, createGroupChat, createUserChat, getAvailableUsers };
+export { loginUser, registerUser, createChat , getAvailableUsers };

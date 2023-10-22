@@ -29,7 +29,7 @@ function HomePage({socket}) {
   
   useEffect(() => {
     setUser({
-      userID: 11112,
+      userId: 11112,
       username: "Thruster69",
     });
   }, []);

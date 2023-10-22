@@ -3,11 +3,7 @@
 
 import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Switch, Transition } from "@headlessui/react";
-import {
-  createGroupChat,
-  createUserChat,
-  getAvailableUsers,
-} from "../services/api";
+import { createChat, getAvailableUsers } from "../services/api";
 //import { requestHandler } from "../../utils";
 import Button from "./Button";
 import Input from "./Input";
@@ -17,34 +13,29 @@ import {
   XCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
+import makeToast from "./Toaster";
 
 const AddChatModal = ({ user, open, onClose, onSuccess }) => {
   const [users, setUsers] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [isGroupChat, setIsGroupChat] = useState(false);
   const [groupParticipants, setGroupParticipants] = useState([]);
-  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUser, setSelectedUser] = useState([]);
   const [creatingChat, setCreatingChat] = useState(false);
+  const [members, setMembers] = useState([]);
 
   const classNames = (...className) => {
     return className.filter(Boolean).join(" ");
   };
 
-  //   const getUsers = async () => {
-  //     requestHandler(
-  //       async () => await getAvailableUsers(),
-  //       null,
-  //       (res) => {
-  //         const { data } = res;
-  //         setUsers(data || []);
-  //       },
-  //       alert
-  //     );
-  //   };
-  useEffect(() => {
-    if (!open) return;
-    getUsers();
-  }, [open]);
+  const morphArray = (originalArray) => {
+    return originalArray.map((item) => {
+      return {
+        id: item.userId,
+        nickname: item.username,
+      };
+    });
+  };
 
   const getUsers = async () => {
     getAvailableUsers(user.userId).then((res) => {
@@ -52,58 +43,63 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
       setUsers(data || []);
     });
   };
+  useEffect(() => {
+    if (selectedUser.length > 0) {
+      setMembers(morphArray([...selectedUser, user]));
+    }
+  }, [selectedUser, user]);
 
-  const createNewChat = async () => {
-    // if (!selectedUserId) return alert("Please select a user");
+  useEffect(() => {
+    if (groupParticipants.length > 0) {
+      setMembers(morphArray([...groupParticipants, user]));
+    }
+  }, [groupParticipants, user]);
 
-    // await requestHandler(
-    //   async () => await createUserChat(selectedUserId),
-    //   setCreatingChat,
-    //   (res) => {
-    //     const { data } = res;
-    //     if (res.statusCode === 200) {
-    //       alert("Chat with selected user already exists");
-    //       return;
-    //     }
-    //     onSuccess(data);
-    //     handleClose();
-    //   },
-    //   alert
-    // );
-
-    console.log("New chat created", isGroupChat, selectedUserId);
+  const createNewChat = () => {
+    if (selectedUser.length === 0) {
+      makeToast("error", "Please select a user");
+      return;
+    }
+    const name = user.username + "-" + selectedUser[0].username;
+    createChat(name, members)
+      .then((res) => {
+        makeToast("success", res.data);
+        handleClose();
+      })
+      .catch((error) => {
+        makeToast("error", error.response.data.error);
+      });
+    console.log("New chat created", name, members);
   };
 
   const createNewGroupChat = async () => {
-    // if (!groupName) return alert("Group name is required");
-    // if (!groupParticipants.length || groupParticipants.length < 2)
-    //   return alert("There must be at least 2 group participants");
-
-    // await requestHandler(
-    //   async () =>
-    //     await createGroupChat({
-    //       name: groupName,
-    //       participants: groupParticipants,
-    //     }),
-    //   setCreatingChat,
-    //   (res) => {
-    //     const { data } = res;
-    //     onSuccess(data);
-    //     handleClose();
-    //   },
-    //   alert
-    // );
-    console.log("New Group Chat", groupParticipants, isGroupChat, groupName);
+    if (!groupName) return makeToast("error", "Group name is required");
+    if (!groupParticipants.length || groupParticipants.length < 2)
+      return makeToast("error", "There must be at least 2 group participants");
+    createChat(groupName, members)
+      .then((res) => {
+        makeToast("success", res.data);
+        handleClose();
+      })
+      .catch((error) => {
+        makeToast("error", error.response.data.error);
+      });
+    console.log("New Group Chat", members, isGroupChat, groupName);
   };
 
   const handleClose = () => {
     setUsers([]);
-    setSelectedUserId(null);
+    setSelectedUser([]);
     setGroupName("");
     setGroupParticipants([]);
     setIsGroupChat(false);
     onClose();
   };
+
+  useEffect(() => {
+    if (!open) return;
+    getUsers();
+  }, [open]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -204,7 +200,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
                           ? "Select group participants..."
                           : "Select a user to chat..."
                       }
-                      value={isGroupChat ? "" : selectedUserId || ""}
+                      value={isGroupChat ? "" : selectedUser || ""}
                       options={users.map((user) => {
                         return {
                           label: user.username,
@@ -212,12 +208,12 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
                         };
                       })}
                       onChange={({ value, label }) => {
+                        const newParticipant = {
+                          userId: value,
+                          username: label,
+                        };
                         if (isGroupChat) {
                           // if user is creating a group chat track the participants in an array
-                          const newParticipant = {
-                            userId: value,
-                            username: label,
-                          }; // creating an object with userId and username
                           const exists = groupParticipants.some(
                             (participant) =>
                               participant.userId === newParticipant.userId
@@ -231,7 +227,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
                             ]);
                           }
                         } else {
-                          setSelectedUserId(value);
+                          setSelectedUser([newParticipant]);
                           // if user is creating normal chat just get a single user
                         }
                       }}
@@ -249,37 +245,37 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
                       </span>{" "}
                       <div className="flex justify-start items-center flex-wrap gap-2 mt-3">
                         {groupParticipants.map((participant) => {
-                            return (
-                              <div
-                                className="inline-flex bg-secondary rounded-full p-2 border-[1px] border-zinc-400 items-center gap-2"
-                                key={participant.userId}
-                              >
-                                {/* <img
+                          return (
+                            <div
+                              className="inline-flex bg-secondary rounded-full p-2 border-[1px] border-zinc-400 items-center gap-2"
+                              key={participant.userId}
+                            >
+                              {/* <img
                                   className="h-6 w-6 rounded-full object-cover"
                                   src={participant.avatar.url}
                                   alt="sdgfdsfsgs"
                                 /> */}
-                                <ion-icon
-                                  name="person-circle-outline"
-                                  class="h-6 w-6 text-white rounded-full object-cover"
-                                ></ion-icon>
-                                <p className="text-white">
-                                  {participant.username}
-                                </p>
-                                <XCircleIcon
-                                  role="button"
-                                  className="w-6 h-6 text-white hover:text-red-600 cursor-pointer"
-                                  onClick={() => {
-                                    setGroupParticipants(
-                                      groupParticipants.filter(
-                                        (p) => p.userId !== participant.userId
-                                      )
-                                    );
-                                  }}
-                                />
-                              </div>
-                            );
-                          })}
+                              <ion-icon
+                                name="person-circle-outline"
+                                class="h-6 w-6 text-white rounded-full object-cover"
+                              ></ion-icon>
+                              <p className="text-white">
+                                {participant.username}
+                              </p>
+                              <XCircleIcon
+                                role="button"
+                                className="w-6 h-6 text-white hover:text-red-600 cursor-pointer"
+                                onClick={() => {
+                                  setGroupParticipants(
+                                    groupParticipants.filter(
+                                      (p) => p.userId !== participant.userId
+                                    )
+                                  );
+                                }}
+                              />
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   ) : null}
