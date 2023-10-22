@@ -6,7 +6,6 @@ import { getLocalStorage } from "./setGetLocal.js";
 import { useNavigate } from "react-router-dom";
 import makeToast from "./Toaster.js";
 import AddChatModal from "./addChatModal.js";
-import { unstable_ClassNameGenerator } from "@mui/material";
 import { getUserChats } from "../services/api.js";
 
 function HomePage({socket}) {
