@@ -1,13 +1,11 @@
 //require("dotenv").config({ path: "./.env" });
-
 const express = require("express");
-const http = require("http");
 const cors = require("cors");
 const DataBase = require("./DBapi");
 const setupSocket = require("./socket"); // import the Socket.IO setup function
 
 const app = express();
-const server = http.createServer(app); // create an HTTP server instance
+const server = require("http").createServer(app);// create an HTTP server instance
 
 app.use(cors());
 app.use(express.json());
@@ -23,9 +21,6 @@ const io = setupSocket(server); // Pass the HTTP server instance to your setup f
 server.listen(PORT, () => {
   console.log(`server running at http://localhost:${PORT}`);
 });
-
-// ... rest of your server logic ...
-
 
 //Routes
 // const chatRouter = require("./routes/chat");

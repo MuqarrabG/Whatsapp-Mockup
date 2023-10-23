@@ -14,6 +14,7 @@ const setupSocket = (server) => {
         console.log(`${socket.id} user just connected`);
 
         socket.on('message', (data) => {
+            console.log(data)
             io.emit('messageResponse', data);
         });
 
