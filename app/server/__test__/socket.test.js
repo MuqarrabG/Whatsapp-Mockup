@@ -45,4 +45,15 @@ describe("socket.io server", () => {
       done();
     });
   });
+
+  test("should handle messages", (done) => {
+    clientSocket.emit("message", { authorId: "11117", author: "Bob", content: "Hello Guys" });
+    serverSocket.on("message", (data) => {
+      expect(data).toBeDefined();
+      expect(data.author).toBe('Bob');
+      expect(data.authorId).toBe('11117');
+      expect(data.content).toBe('Hello Guys')
+      done();
+    });
+  });
 });
