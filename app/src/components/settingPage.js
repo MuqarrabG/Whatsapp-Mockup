@@ -12,10 +12,12 @@ function settingPage() {
     return(
         <div className="min-w-[30%] bg-green-200 h-screen overflow-auto border-r border-black">
         
-        
-        <HeaderRight />
-        <Divider></Divider>
         <HeaderLeft />
+        <Divider></Divider>
+        <HeaderRight />
+
+       
+
       </div>
     );
     }

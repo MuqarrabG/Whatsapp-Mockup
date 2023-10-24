@@ -15,13 +15,44 @@ import { grid } from "ionicons/icons";
 function HeaderRight () {
     return (
         
-    <Box>
-    <div>
-        Settings 
-    </div>
-   
-    </Box>
+    <div style={{display: 'flex', height: '90%', width: '100%', flexDirection: 'row'}}>
+        <div style={{flexDirection: 'column', height: '100%', width: '100%'}} className="LowerSideBar">
+            <Box sx={{ width: '100%', height: '100%', maxWidth: 360, bgcolor: 'background.paper', flexDirection: "column"}}>
+      
+      <nav aria-label="main mailbox folders">
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <ManageAccountsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Change Name" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <NotificationsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Notification" />
+            </ListItemButton>
+          </ListItem>
 
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </nav>
+    </Box>
+   
+    </div>
+        <div>Settings</div>
+    </div>
    
     )
 }
