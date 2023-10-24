@@ -489,9 +489,9 @@ DataBase.put("/api/groups/:group/:message/edit", (req, res) => {
 
 //refactored
 DataBase.post("/api/groups/:group/post", (req, res) => {
-  const { content, authorId, author } = req.body;
+  const { content, authorID, author } = req.body;
   const groupId = Number(req.params.group);
-  if (!content || !authorId || !author) {
+  if (!content || !authorID || !author) {
     return res.status(400).json({
       error: "Content, author ID, and author name are required",
     });
@@ -504,7 +504,7 @@ DataBase.post("/api/groups/:group/post", (req, res) => {
   const newMessage = {
     messageId: group.nextMessageId,
     content: content,
-    authorID: authorId,
+    authorID: authorID,
     author: author, // username
     reactions: [],
     createdAt: createdAtISO,

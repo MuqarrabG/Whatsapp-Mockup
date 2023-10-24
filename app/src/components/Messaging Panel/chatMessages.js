@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function ChatMessages({ messages, currentUser }) {
+function ChatMessages({ messages, currentUser, lastMessageRef}) {
   console.log("CHATMESASAGES", currentUser, messages)
   return (
     <div className="flex-1 overflow-auto bg-[#DAD3CC]">
@@ -10,7 +10,7 @@ function ChatMessages({ messages, currentUser }) {
             <div key={index} className="flex justify-end mb-2">
               <div className="rounded py-2 px-3 bg-[#E2F7CB]">
                 <p className="text-sm mt-1">{message.content}</p>
-                <p className="text-right text-xs text-grey-dark mt-1">{` ${new Date(
+                <p className="text-right text-xs text-gray-400 mt-1">{` ${new Date(
                   message.createdAt
                 ).toLocaleTimeString([], {
                   hour: "2-digit",
@@ -25,7 +25,7 @@ function ChatMessages({ messages, currentUser }) {
                 <p className="text-sm mt-1">
                   {message.content}
                 </p>
-                <p className="text-right text-xs text-grey-dark mt-1">{` ${new Date(
+                <p className="text-right text-xs text-gray-400 mt-1">{` ${new Date(
                   message.createdAt
                 ).toLocaleTimeString([], {
                   hour: "2-digit",
@@ -36,6 +36,7 @@ function ChatMessages({ messages, currentUser }) {
           )
         )}
       </div>
+      <div ref={lastMessageRef}/>
     </div>
   );
 }

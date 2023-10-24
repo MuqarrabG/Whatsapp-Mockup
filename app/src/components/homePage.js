@@ -11,11 +11,10 @@ import { getUserChats } from "../services/api.js";
 function HomePage({socket}) {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
-  const [messages, setMessages] = useState([]);
+  //const [messages, setMessages] = useState([]);
   const [openAddChat, setOpenAddChat] = useState(false); 
   const [chats, setChats] = useState([])
   const navigate = useNavigate();
-  const delay = (duration) => new Promise(resolve => setTimeout(resolve, duration));
 
 
   //This prevent unlogged in user to access the app
@@ -114,7 +113,7 @@ function HomePage({socket}) {
   
       <div className="flex w-full h-screen overflow-y-hidden">
         <SideBar user={user} chats={chats} />
-        <MessagingPanel user={user} messages={messages} socket={socket} />
+        <MessagingPanel user={user} socket={socket} />
       </div>
     </>
   );
