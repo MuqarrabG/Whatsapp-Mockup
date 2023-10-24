@@ -13,9 +13,9 @@ function settingPage() {
         <div className="min-w-[30%] bg-green-200 h-screen overflow-auto border-r border-black">
         
         
-        <HeaderLeft />
-        <Divider></Divider>
         <HeaderRight />
+        <Divider></Divider>
+        <HeaderLeft />
       </div>
     );
     }
