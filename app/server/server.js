@@ -2,11 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const DataBase = require("./DBapi");
-const setupSocket = require("./socket"); // import the Socket.IO setup function
-
 const app = express();
-const server = require("http").createServer(app);// create an HTTP server instance
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static("build"));
@@ -15,10 +11,9 @@ app.use(DataBase);
 // Use the PORT from environment variables if available, otherwise fallback to 3001
 const PORT = process.env.PORT || 3001;
 
-// Set up Socket.IO
-const io = setupSocket(server); // Pass the HTTP server instance to your setup function
 
-server.listen(PORT, () => {
+
+app.listen(PORT, () => {
   console.log(`server running at http://localhost:${PORT}`);
 });
 

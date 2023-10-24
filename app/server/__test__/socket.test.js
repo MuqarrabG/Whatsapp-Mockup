@@ -1,7 +1,7 @@
 const { Server } = require("socket.io");
 const { createServer } = require("http");
 const Client = require("socket.io-client");
-const setupSocket  = require("./../socket");
+const setupSocket  = require("../Websocket");
 
 describe("socket.io server", () => {
   let io, serverSocket, clientSocket;

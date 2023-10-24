@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "./header";
 import ChatMessages from "./chatMessages";
 import MessageInput from "./messageInput";
 import { getChatById } from "../../services/api";
 import makeToast from "../Toaster";
 
-function MessagingPanel({ socket, messages, user }) {
+function MessagingPanel({ socket, user }) {
   const [selectedChat, setSelectedChat] = useState(null);
   const [chat, setChat] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  // ... rest of your component's code ...
+  const [messages, setMessages] = useState([]);
+  const lastMessageRef = useRef(null);
 
   useEffect(() => {
     const handleChatSelection = (event) => {
@@ -18,13 +18,15 @@ function MessagingPanel({ socket, messages, user }) {
       const newChatId = event.detail;
       setSelectedChat(newChatId);
 
-      // It might be a good idea to set loading to true here if fetching the chat takes time.
       setLoading(true);
 
       getChatById(newChatId)
         .then((res) => {
           setChat(res.data);
+          setMessages(res.data.messages);
+          //setMessages(prevState => [...prevState, newMessage])
           setLoading(false);
+          //console.log("Message state is: ", typeof messages, messages)
           makeToast("success", "Messages Retrieved");
         })
         .catch((error) => {
@@ -33,7 +35,6 @@ function MessagingPanel({ socket, messages, user }) {
           setLoading(false);
         });
     };
-
     // Listen for the "chatSelected" event.
     window.addEventListener("chatSelected", handleChatSelection);
 
@@ -41,9 +42,29 @@ function MessagingPanel({ socket, messages, user }) {
     return () => {
       window.removeEventListener("chatSelected", handleChatSelection);
     };
-  }, []); // Empty dependency array means this useEffect runs once when the component mounts and cleans up when it unmounts.
+  }, []);
 
-  // ... rest of your component's code ...
+  useEffect(() => {
+    if (chat && chat.groupId) {
+      socket.emit("join_chat", chat.groupId);
+    }
+  }, [chat]);
+
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
+  }, [messages]);
+
+  useEffect(() => {
+    if (socket) {
+      const handler = ({ newMessage }) => {
+        setMessages((prevState) => [...prevState, newMessage]);
+        console.log(newMessage);
+      };
+      socket.on("messageResponse", handler);
+      // Cleanup function
+      return () => socket.off("messageResponse", handler);
+    }
+  }, [socket]);
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -60,11 +81,12 @@ function MessagingPanel({ socket, messages, user }) {
   return (
     <div className="w-2/3 border flex flex-col">
       <Header chat={chat} currentUser={user} />
-      <ChatMessages messages={chat.messages} currentUser={user} />
+      <ChatMessages messages={messages} currentUser={user} lastMessageRef={lastMessageRef}/>
       <MessageInput
         socket={socket}
         currentUser={user}
         sendMessage={sendMessage}
+        chatId={chat.groupId}
       />
     </div>
   );
