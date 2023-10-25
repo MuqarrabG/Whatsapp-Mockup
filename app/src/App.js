@@ -15,7 +15,7 @@ import "./index.css";
 import { useEffect } from "react";
 // import axios from "axios";
 
-const socket = socketIO.connect("http://localhost:4000"); // connects to socket server.
+const socket = socketIO.connect("http://10.126.98.163:4000"); // connects to socket server.
 function App() {
   return (
     <Router>

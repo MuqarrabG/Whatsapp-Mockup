@@ -55,7 +55,7 @@ function MessagingPanel({ socket, user }) {
   }, [messages]);
 
   useEffect(() => {
-    if (socket) {
+    if (socket && messages) {
       const handler = ({ newMessage }) => {
         setMessages((prevState) => [...prevState, newMessage]);
         console.log(newMessage);
@@ -64,7 +64,7 @@ function MessagingPanel({ socket, user }) {
       // Cleanup function
       return () => socket.off("messageResponse", handler);
     }
-  }, [socket]);
+  }, [socket, messages]);
 
   if (loading) {
     return <h1>Loading...</h1>;

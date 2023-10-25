@@ -34,7 +34,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "jesty": "jest",
@@ -43,7 +43,7 @@
     "json-server": "json-server -p 3001 --watch server/databaseStructure.json",
     "build:css": "postcss src/tailwind.css -o src/index.css",
     "dev": "nodemon server/server.js",
-    "socket": "nodemon server/WebSocket.js"
+    "socket": "node server/WebSocket.js"
   },
   "eslintConfig": {
     "extends": [

@@ -74,7 +74,13 @@ function HomePage({socket}) {
   //       console.error("Failed to fetch users:", error);
   //     });
   // }, []);
-
+  // useEffect(() => {
+  //   if (socket && user.userId) {
+  //     socket.on("new_chat_event", getChats());
+  //     // Cleanup function
+  //     return () => socket.off("new_chat_event", getChats());
+  //   }
+  // }, [socket, user]);
 
   useEffect(() => {
     const handleCreateChat = () => {
@@ -108,6 +114,9 @@ function HomePage({socket}) {
         }}
         onSuccess={() => {
           getChats();
+          // if(socket) {
+          //   socket.emit("new_chat");
+          // }
         }}
       />
   

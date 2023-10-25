@@ -65,6 +65,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
     createChat(name, members)
       .then((res) => {
         makeToast("success", res.data);
+        onSuccess()
         handleClose();
       })
       .catch((error) => {
@@ -80,6 +81,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
     createChat(groupName, members)
       .then((res) => {
         makeToast("success", res.data);
+        onSuccess()
         handleClose();
       })
       .catch((error) => {

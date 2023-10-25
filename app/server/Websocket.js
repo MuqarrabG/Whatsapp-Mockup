@@ -1,15 +1,15 @@
-const app = require('express')()
-const server = require('http').createServer(app)
-const io = require('socket.io')(server, {
+const app = require("express")();
+const server = require("http").createServer(app);
+const io = require("socket.io")(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
   },
-})
+});
 
 const axios = require("axios");
 const isProduction = process.env.NODE_ENV === "production";
-const baseURL = isProduction ? "/api/" : "http://localhost:3001/api/";
+const baseURL = isProduction ? "/api/" : "http://10.126.98.163:3001/api/";
 
 let users = []; // this will hold a local copy of the active users.
 
@@ -44,10 +44,15 @@ io.on("connection", (socket) => {
     users = users.filter((user) => user.socketID !== socket.id);
     socket.emit("newUserResponse", users);
   });
+
+  socket.on("new_chat", () => {
+    console.log("New Chat created")
+    io.emit("new_chat_event");
+  })
 });
 
 const PORT = process.env.PORT || 4000;
 
 server.listen(PORT, () => {
-  console.log(`Socket server is listening at port ${PORT}`)
-})
+  console.log(`Socket server is listening at port ${PORT}`);
+});
