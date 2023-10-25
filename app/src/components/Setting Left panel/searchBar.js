@@ -1,57 +1,57 @@
-import { settings } from 'ionicons/icons';
-import React, {useState} from 'react'
+// import { settings } from 'ionicons/icons';
+// import React, {useState} from 'react'
 
-const SearchBar = () => {
+// const SearchBar = () => {
 
-const [searchInput, setSearchInput] = useState("");
+// const [searchInput, setSearchInput] = useState("");
 
-const Settings = [
+// const Settings = [
 
-    {name: ChangeName},
-    {name: LogOut}
+//     {name: ChangeName},
+//     {name: LogOut}
   
-  ];
+//   ];
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-  };
+//   const handleChange = (e) => {
+//     e.preventDefault();
+//     setSearchInput(e.target.value);
+//   };
   
-  if (searchInput.length > 0) {
-      Settings.filter((settings) => {
-      return settings.name.match(searchInput);
-  });
-  }
+//   if (searchInput.length > 0) {
+//       Settings.filter((settings) => {
+//       return settings.name.match(searchInput);
+//   });
+//   }
 
-  return <div>
-    <input
-   type="text"
-   placeholder="Search here"
-   onChange={handleChange}
-   value={searchInput} />
+//   return <div>
+//     <input
+//    type="text"
+//    placeholder="Search here"
+//    onChange={handleChange}
+//    value={searchInput} />
 
-<table>
-  <tr>
-    <th>name</th>
-  </tr>
+// <table>
+//   <tr>
+//     <th>name</th>
+//   </tr>
 
-{Settings.map((settings) => {
+// {Settings.map((settings) => {
 
-<div>
-  <tr>
-    <td>{settings.name}</td>
-  </tr>
-</div>
+// <div>
+//   <tr>
+//     <td>{settings.name}</td>
+//   </tr>
+// </div>
 
-})}
-</table>
+// })}
+// </table>
 
-</div>
+// </div>
 
 
-};
+// };
 
-export default searchBar;
+// export default searchBar;
 
   
   
