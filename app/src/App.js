@@ -52,7 +52,7 @@ function App() {
         <Route path="/home" element={<HomePage socket={socket}/>}/>
         {/* <Route path="/ListPage" element={<ListPage searchResults={searchResults} />}/>
         <Route path="/SearchBar" element={ <SearchBar Posts={Posts} setSearchResults={searchResults} />}/> */}
-        
+
         {/* //testing SearchBar
         <SearchBar Posts={Posts} setSearchResults={searchResults} /> */}
         {/* <ListPage searchResults={searchResults} /> */}

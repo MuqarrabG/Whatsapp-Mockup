@@ -13,10 +13,10 @@ import { getPosts } from '../../API/axios'
 
 function HeaderLeft () {
 
-  //testing, nothing is changed above other than those with my comments 
   const [Posts, setPosts] = useState([])
   const [searchResults, setSearchResults] = useState([])
 
+  //useEffect would go through json file through getPost() to search and return value
   useEffect(() => {
     getPosts().then(json => {
       setPosts(json)
@@ -28,7 +28,10 @@ function HeaderLeft () {
    
     return (
 
+        // Another CSS background for box for top left corner
         <div style={{flexDirection: 'row', height: '10%', width: '100%'}} className="TopRightBar">
+
+            {/* // Created a new box on top left corner to install a person icon and search bar */}
             <Box sx={{ width: '80%', height: '100%', maxWidth: 360, bgcolor: 'background.paper', flexDirection: "row"}}>
 
           <List>
@@ -40,6 +43,8 @@ function HeaderLeft () {
 
   <Divider></Divider> 
     <SearchBar Posts={Posts} setSearchResults={searchResults} />  
+
+      {/* //Setting is the title of the page */}
       <div style={{position:'relative', left: '380px', top: '-20px'}}>Settings</div>
 
   </List>

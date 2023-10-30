@@ -12,12 +12,17 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 function HeaderRight () {
     return (
         
-    <div style={{display: 'flex', height: '90%', width: '100%', flexDirection: 'row'}}>
+      //bottom left box created for Notification, Change Name and Logout buttons
       <div style={{flexDirection: 'column', height: '100%', width: '100%'}} className="LowerSideBar">
+
+        {/* //Main box of the entire setting SettingPage */}
         <Box sx={{ width: '100%', height: '100%', maxWidth: 360, bgcolor: 'background.paper', flexDirection: "column"}}>
+
           <nav aria-label="main mailbox folders">
 
           <List>
+
+            {/* //Change Name button created */}
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -27,6 +32,7 @@ function HeaderRight () {
               </ListItemButton>
             </ListItem>
 
+            {/* //Notification button created */}
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -36,9 +42,9 @@ function HeaderRight () {
               </ListItemButton>
             </ListItem>
 
+            {/* //Logout button function to allow user to return to log in page */}
             <ListItem disablePadding onClick={() => {
-              // console.log("test successfully");
-              window.location= '/'
+                        window.location= '/'
               }}>
               <ListItemButton >
                 <ListItemIcon>
@@ -50,9 +56,7 @@ function HeaderRight () {
           </List>
           </nav>
         </Box>
-   
       </div>
-    </div>
    
     )
 }
