@@ -1,10 +1,10 @@
 const express = require("express");
 const fs = require("fs");
-const rawData = fs.readFileSync("server/database.json");
+const rawData = fs.readFileSync("server/database.json");// will swap this with a mongo connection
 const data = JSON.parse(rawData);
 const DataBase = express.Router();
 
-const writeFile = (newData, returnFunction) => {
+const writeFile = (newData, returnFunction) => {// I wrote this function to reduse repeated code but the call is so lengthy I may as well not have done so.
   fs.writeFile(
     "./server/database.json",
     JSON.stringify(newData),
@@ -25,11 +25,12 @@ const writeFile = (newData, returnFunction) => {
 // this will return the username and password related to the user
     // authentication needed
 DataBase.get("/api/users-meta/:id", (req, res) => {
-  const userId = Number(req.params.id);
+  const userId = Number(req.params.id);// userId is from the url
   const extractNameID = data.users
+    // will need to add authentication as anyone can type a url
     .filter(user => user.userId !== userId ) 
     .map(user => {
-      return {
+      return {// the return data
         username: user.username,
         userId: user.userId
       };
@@ -39,20 +40,20 @@ DataBase.get("/api/users-meta/:id", (req, res) => {
 });
 
 // This function searches for a user id based on the email and username
-DataBase.put("/api/users/id", (req, res) => {
+DataBase.put("/api/users/id", (req, res) => {// should be a get request but I needed a body.
   const body = req.body;
   data.users.map((u) => {
-    if (body.email)
+    if (body.email)// is this search by email or username?
       if (u.email === body.email) {
         res.json({ id: u.userId });
-      } else if (body.username) {
+      } else if (body.username) {// is the username present to be used as confirmation data?
         let countUserNames = 0;
         if (u.username === body.username)
           data.users.map((u2) => {
             if (u2.username === u.username) countUserNames += 1;
           });
         if (countUserNames >= 2) {
-          res.status(405).json({
+          res.status(405).json({// if multiple users have that username, then you must search by email which is unique
             error:
               "Too many users with that name exist, please qurey with an email address.",
           });
@@ -66,11 +67,11 @@ DataBase.put("/api/users/id", (req, res) => {
 
 // this will return the entire user object of the user id that is entered
 DataBase.get("/api/users/:user", (req, res) => {
-  const userId = Number(req.params.user);
-  if (!userId) {
+  const userId = Number(req.params.user);// userId in the url -> insecure
+  if (!userId) {// why is this condition here? if the userId is not present then this route will not be activated.
     return res.status(400).json({ error: "A valid user ID is required" });
   }
-  const user = data.users.find((u) => u.userId === userId);
+  const user = data.users.find((u) => u.userId === userId);// find the user data
   if (!user) {
     return res.status(404).json({ error: "No user with that ID exists" });
   }
@@ -79,22 +80,21 @@ DataBase.get("/api/users/:user", (req, res) => {
 
 // returns a list of the groups that a particular user is in
 DataBase.get("/api/:id/groups", (req, res) => {
-  const userId = Number(req.params.id);
-  console.log(userId)
+  const userId = Number(req.params.id);// userId in the url -> insecure
   if (!userId) {
     return res.status(400).json({ error: "User ID must be a valid number" });
   }
   const usersGroups = data.groups
-    .filter((group) => group.members.some((member) => member.id === userId))
+    .filter((group) => group.members.some((member) => member.id === userId))// filter for the groups that this user is in
     .map((group) => {
       let lastMessage = null;
       if (group.messages && group.messages.length > 0) {
         const sortedMessages = group.messages
           .slice()
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));// sort by the recency of the most recent message
         lastMessage = sortedMessages[0];
       }
-      return {
+      return {// return from the map function
         groupId: group.groupId,
         name: group.name,
         lastMessage: lastMessage
@@ -121,13 +121,13 @@ DataBase.post("/api/login", (req, res) => {
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
   }
-  const user = data.users.find(
+  const user = data.users.find(// encryption needed
     (u) => u.email === email && u.password === password
   );
   if (!user) {
     return res.status(401).json({ error: "Email or Password is wrong" });
   }
-  res.json({
+  res.json({// return object, could just as easily be a boolean
     userId: user.userId,
     username: user.username,
   });
@@ -137,15 +137,15 @@ DataBase.post("/api/login", (req, res) => {
     // authentichation still needs to be added
 DataBase.put("/api/user/username", (req, res) => {
   const { userId, username } = req.body;
-  if (!userId || !username) {
+  if (!userId || !username) {// all nesessary variables are present
     return res.status(400).send("User ID and username are required");
   }
-  const userIndex = data.users.findIndex((u) => u.userId === userId);
+  const userIndex = data.users.findIndex((u) => u.userId === userId);// get the user by their ID
   if (userIndex === -1) {
     return res.status(404).json({ error: "No user with that ID exists" });
   }
   data.users[userIndex].username = username;
-  writeFile(data, (error) => {
+  writeFile(data, (error) => {// swap the usernames
     if (error) {
       return res
         .status(500)
@@ -167,7 +167,7 @@ DataBase.put("/api/user/password", (req, res) => {
     return res.status(404).json({ error: "No user with that ID exists" });
   }
   data.users[userIndex].password = password;
-  writeFile(data, (error) => {
+  writeFile(data, (error) => {// swap the passwords
     if (error) {
       return res
         .status(500)
@@ -181,17 +181,17 @@ DataBase.put("/api/user/password", (req, res) => {
 DataBase.post("/api/register/user", (req, res) => {
   const { username, email, password } = req.body;
   const emailExists = data.users.some((user) => user.email === email);
-  if (emailExists) {
+  if (emailExists) {// email must also be a unique identifier
     res.status(400).send("Email already in use");
   } else {
-    const newUser = {
+    const newUser = {// new user object
       userId: data.nextUserId++,
       username,
-      password,
+      password,// encryption needer for passwords
       email,
     };
     data.users.push(newUser);
-    writeFile(data, (error) => {
+    writeFile(data, (error) => {// add a new user
       if (error) {
         res.status(500).send("Internal Server Error: User not saved");
         return;
@@ -203,7 +203,7 @@ DataBase.post("/api/register/user", (req, res) => {
 
 // removes a user if they delete their account
 DataBase.delete("/api/users/:user", (req, res) => {
-  const userId = Number(req.params.user);
+  const userId = Number(req.params.user);// valid data checks
   if (!userId) {
     return res.status(400).send("User ID is required");
   }
@@ -212,7 +212,7 @@ DataBase.delete("/api/users/:user", (req, res) => {
     return res.status(404).json({ error: "No user with that ID exists" });
   }
   data.users.splice(userIndex, 1);
-  writeFile(data, (error) => {
+  writeFile(data, (error) => {// remove user account entry
     if (error) {
       return res.status(500).send("Internal Server Error: User not deleted");
     }
@@ -227,7 +227,7 @@ DataBase.delete("/api/users/:user", (req, res) => {
 
 // gets a specific group by it's id
 DataBase.get("/api/groups/:group", (req, res) => {
-  const groupId = Number(req.params.group);
+  const groupId = Number(req.params.group);// groupId in the url -> insecure
   console.log(groupId)
   if (!groupId) {
     return res.status(400).json({ error: "A valid group ID is required" });
@@ -236,11 +236,11 @@ DataBase.get("/api/groups/:group", (req, res) => {
   if (!group) {
     return res.status(404).json({ error: "No group with that ID exists" });
   }
-  res.json(group);
+  res.json(group);// returns the entire group object
 });
 
 // Might remove this -- Muq
-// removed it -- Andrew
+// Removed it -- Andrew
 // DataBase.get("/api/groups/:group/isOneToOne", (req, res) => {
 //   const group = req.params.group;
 //   let found = false;
@@ -261,7 +261,7 @@ DataBase.get("/api/groups/:group", (req, res) => {
 // make a new group
 DataBase.post("/api/group", (req, res) => {
   const { members, name } = req.body;
-  if (!name) {
+  if (!name) {// valid data checks
     return res
       .status(400)
       .json({ error: "The 'name' of the group is required." });
@@ -269,7 +269,7 @@ DataBase.post("/api/group", (req, res) => {
   if (!Array.isArray(members) || members.length < 2) {
     return res
       .status(400)
-      .json({ error: "A group should have at least two member." });
+      .json({ error: "A group should have at least two members." });
   }
   const hasInvalidMember = members.some(
     (member) => !member.id || !member.nickname
@@ -293,7 +293,7 @@ DataBase.post("/api/group", (req, res) => {
       return res.status(400).json({ error: "A chat between "+members[0].nickname+" and "+members[1].nickname+" already exists." });
     }
   }
-  const newGroup = {
+  const newGroup = {// new group object
     groupId: data.nextGroupId++,
     name: name,
     nextMessageId: 0,
@@ -302,7 +302,7 @@ DataBase.post("/api/group", (req, res) => {
     isGroup: isGroup,
   };
   data.groups.push(newGroup);
-  writeFile(data, (error) => {
+  writeFile(data, (error) => {// add a new group
     if (error) {
       return res
         .status(500)
@@ -317,13 +317,13 @@ DataBase.post("/api/group", (req, res) => {
 
 //remove an existing group
 DataBase.delete("/api/groups/:group", (req, res) => {
-  const groupId = Number(req.params.group);
+  const groupId = Number(req.params.group);// insecure -> needs authentication
   const groupIndex = data.groups.findIndex((g) => g.groupId === groupId);
-  if (groupIndex === -1) {
+  if (groupIndex === -1) {// valid data checks
     return res.status(404).json({ error: "No group with that ID exists" });
   }
   data.groups.splice(groupIndex, 1);
-  writeFile(data, (error) => {
+  writeFile(data, (error) => {// remove group
     if (error) {
       return res
         .status(500)
@@ -334,7 +334,7 @@ DataBase.delete("/api/groups/:group", (req, res) => {
 });
 
 // re-assign a group member's nickname
-    // Don't worry about this for now
+    // Don't worry about this for now -> unused
 DataBase.put("/api/groups/:group/renameMember", (req, res) => {
   const body = req.body;
   const group = req.params.group;
@@ -376,6 +376,7 @@ DataBase.put("/api/groups/:group/renameMember", (req, res) => {
 });
 
 // add a new member to a group
+    // Don't worry about this for now -> unused
 DataBase.post("/api/groups/:group/invite", (req, res) => {
   const groupId = Number(req.params.group);
   const { memberId, memberName } = req.body;
@@ -417,6 +418,7 @@ DataBase.post("/api/groups/:group/invite", (req, res) => {
 });
 
 // remove a user from a group
+    // Don't worry about this for now -> unused
 DataBase.delete("/api/groups/:group/ban/:user", (req, res) => {
   const groupId = Number(req.params.group);
   const userId = Number(req.params.user);
@@ -450,21 +452,21 @@ DataBase.delete("/api/groups/:group/ban/:user", (req, res) => {
 // I'm pretty sure it's in use -- Andrew
 // get the latest message for a specific group
 DataBase.get("/api/groups/:group/latest/message", (req, res) => {
-  const group = req.params.group;
+  const group = req.params.group;// get data from url -> insecure
   let found = false;
   let latest = { messageId: -1 };
   data.groups.map((g) => {
     if (g.groupId === Number(group)) {
       found = true;
       g.messages.map((m) => {
-        if (latest.messageId === -1 || m.time > latest.time) {
+        if (latest.messageId === -1 || m.time > latest.time) {// search messages by last sent
           latest = m;
         }
       });
     }
   });
   if (!found) res.status(401).json({ error: "No group with that ID exists" });
-  res.json(latest);
+  res.json(latest);// return the entire message object
 });
 
 // edit an existing message
@@ -502,7 +504,7 @@ DataBase.put("/api/groups/:group/:message/edit", (req, res) => {
 DataBase.post("/api/groups/:group/post", (req, res) => {
   const { content, authorID, author } = req.body;
   const groupId = Number(req.params.group);
-  if (!content || !authorID || !author) {
+  if (!content || !authorID || !author) {// valid data check
     return res.status(400).json({
       error: "Content, author ID, and author name are required",
     });
@@ -512,7 +514,7 @@ DataBase.post("/api/groups/:group/post", (req, res) => {
     return res.status(404).json({ error: "No group with that ID exists" });
   }
   const createdAtISO = new Date().toISOString().split(".")[0] + "Z";
-  const newMessage = {
+  const newMessage = {// new message object
     messageId: group.nextMessageId,
     content: content,
     authorID: authorID,
@@ -523,7 +525,7 @@ DataBase.post("/api/groups/:group/post", (req, res) => {
   };
   group.messages.push(newMessage);
   group.nextMessageId++;
-  writeFile(data, (error) => {
+  writeFile(data, (error) => {// adds a message
     if (error) {
       return res
         .status(500)
@@ -537,10 +539,10 @@ DataBase.post("/api/groups/:group/post", (req, res) => {
 //deletes a message from a group
 DataBase.delete("/api/groups/:group/:message/delete", (req, res) => {
   const group = req.params.group;
-  const message = req.params.message;
+  const message = req.params.message;// url params -> insecure
   let foundGroup = false;
   let foundMessage = false;
-  data.groups.map((g) => {
+  data.groups.map((g) => {// get the message
     if (g.groupId === Number(group)) {
       foundGroup = true;
       const newMessages = [];
@@ -553,7 +555,7 @@ DataBase.delete("/api/groups/:group/:message/delete", (req, res) => {
       });
       if (foundMessage) {
         g.messages = newMessages;
-        writeFile(data, (error) => {
+        writeFile(data, (error) => {// remove the message
           if (error) {
             res.status(404).send("Message not Removed");
             return;
@@ -568,6 +570,9 @@ DataBase.delete("/api/groups/:group/:message/delete", (req, res) => {
   if (!foundMessage)
     res.status(401).json({ error: "No message with that ID exists" });
 });
+
+// reactions are not a feature in the front end.
+//  L-> none of these calls are used
 
 // if the user has reacted return their reaction
 DataBase.get("/api/groups/:group/:message/react/:user", (req, res) => {
