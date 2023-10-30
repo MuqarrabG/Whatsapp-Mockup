@@ -1,25 +1,21 @@
 // src/SettingPage.js
 
-import React, {useState} from "react";
-import {searchOutline} from "ionicons/icons";
-import Divider from '@mui/material/Divider';
+import React, {useState, useEffect} from "react"
+import Divider from '@mui/material/Divider'
+import HeaderLeft from "./Setting Left panel/headerLeft"
+import HeaderRight from "./Setting Right panel/headerRight"
 
-import HeaderLeft from "./Setting Left panel/headerLeft";
-import HeaderRight from "./Setting Right panel/headerRight";
-
-function settingPage() {
+function SettingPage() {
 
     return(
-        <div className="min-w-[30%] bg-green-200 h-screen overflow-auto border-r border-black">
+      <div className="min-w-[30%] bg-green-200 h-screen overflow-auto border-r border-black">
         
         <HeaderLeft />
-        <Divider></Divider>
-        <HeaderRight />
-
-       
+          <Divider></Divider>
+            <HeaderRight />
 
       </div>
     );
   }
 
-export default settingPage
+export default SettingPage
