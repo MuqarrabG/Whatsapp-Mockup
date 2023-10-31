@@ -986,3 +986,6 @@ video {
     padding-right: 2rem;
   }
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

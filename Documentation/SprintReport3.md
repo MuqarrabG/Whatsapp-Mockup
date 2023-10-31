@@ -40,3 +40,9 @@
 
     - Investigated on setting page layout.
     - Implemented side bar and buttons.
+
+## Plan for Sprint 4
+
+    - Merge Socket.io, express, and Mongo DB
+    - Finalise the front end
+    - Comment code

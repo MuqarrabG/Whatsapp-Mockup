@@ -1,8 +1,12 @@
 // src/LoginPage.js
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import makeToast from "./Toaster";
+import { loginUser } from "../services/api";
+import { setLocalStorage } from "./setGetLocal";
 function LoginPage() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,8 +15,16 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Authenticate the user using an API
-    console.log(credentials);
+    loginUser(credentials).then((response) => {
+      makeToast("success", "Logged in as "+response.data.username)
+      // localStorage.setItem("userloggedin", JSON.stringify(response.data));
+      setLocalStorage("loggedUser", response.data)
+      navigate('/home')
+    }).catch((error) => {
+      //console.log(error)
+      makeToast("error", error.response.data.error)
+    })
+    //console.log(credentials);
   };
 
   return (

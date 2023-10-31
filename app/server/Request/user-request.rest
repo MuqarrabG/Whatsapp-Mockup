@@ -1,0 +1,36 @@
+
+@baseurl = http://localhost:3001/api
+
+
+### Get users
+
+GET {{baseurl}}/users
+
+### GET user by ID
+GET {{baseurl}}/users/11111
+
+### GET returns user username and userID
+GET {{baseurl}}/users-meta/11117
+
+### GET user groups
+GET {{baseurl}}/11111/groups
+
+### POST a new user
+### This request would fail unless you change the email
+POST {{baseurl}}/register/user
+Content-Type: application/json
+
+{
+    "username": "userone",
+    "email": "userone@example.com",
+    "password": "password1"
+}
+
+### Login
+POST {{baseurl}}/login
+Content-Type: application/json
+
+{
+    "email": "thruster@gmail.com",
+    "password": "thisisfucked"
+}

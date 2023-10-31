@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import { logoReact, menuSharp } from "ionicons/icons";
 import TopBar from "./topBar";
 import SearchBar from "./searchBar";
 import ChatList from "./chatList";
-import fakeData from "./../fakeData.json"
 
-function Sidebar() {
-  const userChats = fakeData.chats;
-
+function Sidebar({ user, chats }) {
   return (
     <div className="w-1/3 border flex flex-col border-black">
-      <TopBar />
+      <TopBar user={user} />
       <SearchBar />
-      <ChatList chats={userChats} />
-      <p>Component 1 TEST</p>
+      <ChatList user={user} chats={chats} />
     </div>
   );
 }

@@ -1,0 +1,36 @@
+
+@baseurl = http://localhost:3001/api
+
+### GET all the groups
+GET {{baseurl}}/groups
+
+### GET group by ID
+GET {{baseurl}}/groups/10
+
+### POST make new Group test
+POST {{baseurl}}/group
+Content-Type: application/json
+
+ {
+  "name": "Study Group",
+  "members": [
+    {
+      "id": "1",
+      "nickname": "alice"
+    },
+    {
+      "id": "5",
+      "nickname": "bob"
+    }
+  ]
+}
+
+### POST make new message to a group
+POST {{baseurl}}/groups/10/post
+Content-Type: application/json
+
+{
+    "author": "Thruster69",
+    "authorId": "11112",
+    "content": "How are you",
+}
