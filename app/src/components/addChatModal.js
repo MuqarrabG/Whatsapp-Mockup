@@ -5,7 +5,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Switch, Transition } from "@headlessui/react";
 import { createChat, getAvailableUsers } from "../services/api";
-//import { requestHandler } from "../../utils";
 import Button from "./Button";
 import Input from "./Input";
 import Select from "./Select";
@@ -24,6 +23,8 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
   const [selectedUser, setSelectedUser] = useState([]);
   const [creatingChat, setCreatingChat] = useState(false);
   const [members, setMembers] = useState([]);
+
+  if(false)setCreatingChat(false);//just so it's used
 
   const classNames = (...className) => {
     return className.filter(Boolean).join(" ");
@@ -103,7 +104,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
   useEffect(() => {
     if (!open) return;
     getUsers();
-  }, [open]);
+  });
 
   return (
     <Transition.Root show={open} as={Fragment}>

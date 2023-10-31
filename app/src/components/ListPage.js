@@ -1,5 +1,3 @@
-import Posts from "../API/Posts"
-
 const ListPage = ({ searchResults }) => {
 
     const results = searchResults.map(Posts => <Posts key={Posts.id} Posts ={Posts} />)

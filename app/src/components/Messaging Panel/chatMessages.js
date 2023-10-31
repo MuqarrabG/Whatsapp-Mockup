@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-
 function ChatMessages({ messages, currentUser, lastMessageRef}) {
   console.log("CHATMESASAGES", currentUser, messages)
   return (

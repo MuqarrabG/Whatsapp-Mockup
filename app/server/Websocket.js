@@ -9,7 +9,7 @@ const io = require("socket.io")(server, {
 
 const axios = require("axios");
 const isProduction = process.env.NODE_ENV === "production";
-const baseURL = isProduction ? "/api/" : "http://10.126.111.73:3001/api/";
+const baseURL = isProduction ? "/api/" : "http://192.168.1.111:3001/api/";
 
 let users = []; // this will hold a local copy of the active users.
 

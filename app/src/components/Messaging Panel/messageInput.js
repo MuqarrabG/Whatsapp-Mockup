@@ -56,7 +56,7 @@ const MessageInput = ({ socket, typingStatus, currentUser, chatId}) => {
         clearTimeout(typingTimeoutRef.current);
       }
     };
-  }, []);
+  }, [socket]);
   useEffect(() => {
     textareaRef.current.style.height = "auto";
     textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";

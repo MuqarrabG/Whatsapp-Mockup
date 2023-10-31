@@ -1,6 +1,5 @@
 // src/SettingPage.js
 
-import React, {useState, useEffect} from "react"
 import Divider from '@mui/material/Divider'
 import HeaderLeft from "./Setting Left panel/headerLeft"
 import HeaderRight from "./Setting Right panel/headerRight"

@@ -4,11 +4,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Person2Icon from '@mui/icons-material/Person2';
-import { Divider, Input } from "@mui/material";
+import { Divider } from "@mui/material";
 
 /* Modified section start*/
 import SearchBar from "../SearchBar" 
-import ListPage from "../ListPage"
 import { getPosts } from '../../API/axios'
 
 function HeaderLeft () {

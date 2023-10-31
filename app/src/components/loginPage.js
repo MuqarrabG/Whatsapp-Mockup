@@ -1,5 +1,5 @@
 // src/LoginPage.js
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import makeToast from "./Toaster";
 import { loginUser } from "../services/api";

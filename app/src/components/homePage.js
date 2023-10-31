@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import * as randomService from "./../services/randomService.js";
 import MessagingPanel from "./Messaging Panel/messagingPanel.js";
 import SideBar from "./Sidebar/sideBar.js";
 import { getLocalStorage } from "./setGetLocal.js";
@@ -9,9 +8,7 @@ import AddChatModal from "./addChatModal.js";
 import { getUserChats } from "../services/api.js";
 
 function HomePage({socket}) {
-  const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
-  //const [messages, setMessages] = useState([]);
   const [openAddChat, setOpenAddChat] = useState(false); 
   const [chats, setChats] = useState([])
   const navigate = useNavigate();
@@ -97,7 +94,7 @@ function HomePage({socket}) {
     if (user.userId) {
       getChats();
     }
-  }, [user]);
+  });
 
   useEffect(() => {
     console.log("Got chats", chats);

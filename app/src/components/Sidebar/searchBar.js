@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { searchOutline } from "ionicons/icons";
 
 function SearchBar() {
   const [query, setQuery] = useState("");

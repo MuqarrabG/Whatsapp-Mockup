@@ -39,11 +39,7 @@ function DropdownMenu() {
   const dropdownRef = useRef(null);
   const navigate = useNavigate()
 
-  const [showModal, setShowModal] = useState(false);
-
   // Function to toggle the modal's visibility
-  const toggleModal = () => setShowModal(!showModal);
-
   const handleMenuClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
@@ -90,6 +86,7 @@ function DropdownMenu() {
             aria-labelledby="options-menu"
           >
             <a
+              href="."
               onClick={handleCreateChatClick}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
@@ -97,33 +94,35 @@ function DropdownMenu() {
               Create Group
             </a>
             <a
-              href="#"
+              href="."
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
               Delete Group
             </a>
             <a
-              href="#"
+              href="."
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
               Edit profile
             </a>
             <a
-              href="#"
+              href="."
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
               Block user
             </a>
             <a
+              href="."
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
             >
               Settings
             </a>
             <a
+              href="."
               onClick={handleLogout}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"

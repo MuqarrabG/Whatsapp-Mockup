@@ -6,7 +6,6 @@ import { getChatById } from "../../services/api";
 import makeToast from "../Toaster";
 
 function MessagingPanel({ socket, user }) {
-  const [selectedChat, setSelectedChat] = useState(null);
   const [chat, setChat] = useState(null);
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -16,7 +15,6 @@ function MessagingPanel({ socket, user }) {
     const handleChatSelection = (event) => {
       // Extract the selected chat ID from the event detail.
       const newChatId = event.detail;
-      setSelectedChat(newChatId);
 
       setLoading(true);
 
@@ -48,7 +46,7 @@ function MessagingPanel({ socket, user }) {
     if (chat && chat.groupId) {
       socket.emit("join_chat", chat.groupId);
     }
-  }, [chat]);
+  }, [socket, chat]);
 
   useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });

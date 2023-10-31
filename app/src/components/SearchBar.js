@@ -1,14 +1,8 @@
 import {searchOutline} from "ionicons/icons"
 
 // SearchBar function to able to search items from the server and if there is nothing, return to original value
-const SearchBar = ({Posts, setSearchResults}) => {
+const SearchBar = () => {
     const handleSubmit = (e) => e.preventDefault()
-        const handleSearchChange = (e) => {
-            if (!e.target.value) return setSearchResults(Posts)      
-                const resultsArray = Posts.filter(Posts => Posts.title.include(e.target.value) || Posts.body.includes(e.target.value))
-
-        setSearchResults(resultsArray)
-    }
 
     return (
         <header>
