@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
 
   socket.on("new_chat", () => {
     console.log("New Chat created")
-    io.emit("new_chat_event");
+    socket.broadcast.emit("new_chat_event");
   })
 });
 
