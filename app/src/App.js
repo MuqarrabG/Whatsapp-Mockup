@@ -10,7 +10,7 @@ import SignupPage from "./components/signupPage";
 import SettingPage from "./components/settingPage"
 import './index.css';
 
-const socket = socketIO.connect('https://hi-five-limited.onrender.com:4000') // connects to socket server.
+const socket = socketIO.connect('/') // connects to socket server.
 
 
 function App() {
