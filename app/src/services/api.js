@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const isProduction = process.env.NODE_ENV === "production";
-const baseURL = isProduction ? "/api/" : "http://10.126.107.33:3001/api/";
+const baseURL = isProduction ? "/api/" : "https://hi-five-limited.onrender.com/api/";
 
 const loginUser = (credentials) => {
   const { email, password } = credentials;
