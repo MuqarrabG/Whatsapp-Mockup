@@ -72,12 +72,15 @@ function HomePage({socket}) {
   //     });
   // }, []);
   useEffect(() => {
+    if (user.userId) {
+      getChats();
+    }
     if (socket && user.userId) {
       socket.on("new_chat_event", getChats);
       // Cleanup function
       return () => socket.off("new_chat_event", getChats);
     }
-  }, [socket, user]);
+  });
 
   useEffect(() => {
     const handleCreateChat = () => {
@@ -89,12 +92,6 @@ function HomePage({socket}) {
       window.removeEventListener("createChat", handleCreateChat);
     };
   }, []);
-
-  useEffect(() => {
-    if (user.userId) {
-      getChats();
-    }
-  });
 
   useEffect(() => {
     console.log("Got chats", chats);

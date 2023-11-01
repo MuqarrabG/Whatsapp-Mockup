@@ -10,7 +10,7 @@ import SignupPage from "./components/signupPage";
 import SettingPage from "./components/settingPage"
 import './index.css';
 
-const socket = socketIO.connect('http://192.168.1.111:4000') // connects to socket server.
+const socket = socketIO.connect('http://10.126.107.33:4000') // connects to socket server.
 
 
 function App() {
