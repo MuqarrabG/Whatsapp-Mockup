@@ -7,12 +7,12 @@ const MessageInput = ({ socket, typingStatus, currentUser, chatId}) => {
   const typingTimeoutRef = useRef(null);
 
   const handleSendMessage = (event) => {
-    // handles sending the message via socket.io server event.
+    // Handles sending the message via socket.io server event, including data sent over message.
     event.preventDefault();
     if (message.trim()) {
       const newMessage = {
         content: message,
-        author: currentUser.username, // need to change from local storage, only use for development.
+        author: currentUser.username, 
         authorID: currentUser.userId,
         createdAt: new Date().toISOString().split(".")[0] + "Z",
       }
@@ -22,8 +22,8 @@ const MessageInput = ({ socket, typingStatus, currentUser, chatId}) => {
   };
 
   const handleTyping = () => {
-    //function to display if a user is typing.
-    socket.emit('typing',  {username: currentUser.username, chatId}) // need to change from local storage, only use for development.
+    // Function to display if a user is typing.
+    socket.emit('typing',  {username: currentUser.username, chatId})
   };
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {

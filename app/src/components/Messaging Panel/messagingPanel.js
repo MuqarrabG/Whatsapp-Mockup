@@ -46,11 +46,11 @@ function MessagingPanel({ socket, user }) {
     if (chat && chat.groupId) {
       socket.emit("join_chat", chat.groupId);
     }
-  }, [socket, chat]);
+  }, [socket, chat]); // Load active chats of the logged in user.
 
   useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
-  }, [messages]);
+  }, [messages]); // Autoscroll to latest message.
 
   useEffect(() => {
     if (socket && messages) {
