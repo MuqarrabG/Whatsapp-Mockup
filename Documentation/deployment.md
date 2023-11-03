@@ -14,7 +14,9 @@ To use the app you can sign up for free, or there are 4 example user accounts li
 
 # Notes
 When we were running this application on our LAN networks, we were all able to get it to work perectly.
-However while it has been hosted on the Render web service we have not been able to get it to save mesages between reloads of the page.
+However, for a while, when it was hosted on Render we could not get it to save mesages between reloads of the page.
+We were able to fix this bug but I wrote these notes in case we could not fix it:
+"
 To see this feature working:
     - run 3 teminals on your lan network
     - run 'cd app' on all of them
@@ -25,3 +27,4 @@ To see this feature working:
     - run 'npm run dev' on another terminal
     - run 'npm run socket' on the last terminal
     - run 'npm start' on the first terminal and the app should work in it's entireity.
+"
