@@ -15,7 +15,8 @@ To use the app you can sign up for free, or there are 4 example user accounts li
 # Notes
 When we were running this application on our LAN networks, we were all able to get it to work perectly.
 However, for a while, when it was hosted on Render we could not get it to save mesages between reloads of the page.
-We were able to fix this bug but I wrote these notes in case we could not fix it:
+We were able to fix this bug, but the messages still do not save between multiple startings of the service.
+To see this feature working Follow these steps to run it on localhost:
 "
 To see this feature working:
     - run 3 teminals on your lan network

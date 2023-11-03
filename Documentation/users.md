@@ -21,3 +21,9 @@ Example User 4:
     Password: secure thing four
        Email: four.four@numbers.com.au
           ID: 44444
+
+bob:
+    Username: bob
+    Password: qwert123A
+       Email: bob@gmail.com
+          ID: 11117
