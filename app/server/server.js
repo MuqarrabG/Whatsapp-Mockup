@@ -22,9 +22,12 @@ const io = require("socket.io")(server, {
   },
 });
 
+// Use the PORT from environment variables if available, otherwise fallback to 3001
+const PORT = process.env.PORT || 3001;
+
 const axios = require("axios");
 const isProduction = process.env.NODE_ENV === "production";
-const baseURL = isProduction ? "/api/" : "http://localhost:3001/api/";
+const baseURL = isProduction ? "/api/" :  `http://localhost:${PORT}/api/`;
 
 io.on("connection", (socket) => {
   console.log(`${socket.id} user just connected`);
@@ -35,6 +38,7 @@ io.on("connection", (socket) => {
 
     try {
       await axios.post(`${baseURL}groups/${data.chatId}/post`, data.newMessage);
+      //console.log(baseURL)
       console.log("Message stored successfully");
     } catch (error) {
       console.error("Error storing the message: ", error);
@@ -63,9 +67,6 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("new_chat_event");
   })
 });
-
-// Use the PORT from environment variables if available, otherwise fallback to 3001
-const PORT = process.env.PORT || 3001;
 
 server.listen(PORT, () => {
   console.log(`server running at http://localhost:${PORT}`);
