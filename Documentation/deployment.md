@@ -19,4 +19,9 @@ To see this feature working:
     - run 3 teminals on your lan network
     - run 'cd app' on all of them
     - find your device's LAN IP address
-wait, just give me a moment to try and get it working now.
+    - replace "hi-five-limited.onrender.com" with "__yourIPaddress__:3001" in /server/Websocket.js
+    - replace "hi-five-limited.onrender.com" with "__yourIPaddress__:3001" in /src/services/api.js
+    - run 'npm install' on one terminal and wait for it to finish
+    - run 'npm run dev' on another terminal
+    - run 'npm run socket' on the last terminal
+    - run 'npm start' on the first terminal and the app should work in it's entireity.
