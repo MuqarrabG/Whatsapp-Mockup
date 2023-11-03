@@ -27,8 +27,7 @@ const PORT = process.env.PORT || 3001;
 
 const axios = require("axios");
 const isProduction = process.env.NODE_ENV === "production";
-const baseURL = isProduction ? "/api/" :  `http://localhost:${PORT}/api/`;
-
+const baseURL = isProduction ? "/api/" : " http://hi-five-limited.onrender.com/api/";
 io.on("connection", (socket) => {
   console.log(`${socket.id} user just connected`);
 
