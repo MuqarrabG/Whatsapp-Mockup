@@ -1,0 +1,22 @@
+# Deployment
+This application is deployed on the Render web service free tier.
+It is registered as a web service in the Singapore (Southeast Asia) region.
+The service is called Hi Five - Limited as per the long name of the Application in the manifest.json file in the repository.
+The service is deployed from the main branch of the repository and the ./app/ directory.
+The build command is: $ npm install && npm run build
+The start command is: $ npm run server
+
+# Access
+The app is deployed under this URL:
+    - https://hi-five-limited.onrender.com
+Because the app is using the free tier, it may take a few minutes to start up again if no one has used it for half an hour.
+To use the app you can sign up for free, or there are 4 example user accounts listed in the ./users.md file.
+
+# Notes
+When we were running this application on our LAN networks, we were all able to get it to work perectly.
+However while it has been hosted on the Render web service we have not been able to get it to save mesages between reloads of the page.
+To see this feature working:
+    - run 3 teminals on your lan network
+    - run 'cd app' on all of them
+    - find your device's LAN IP address
+wait, just give me a moment to try and get it working now.
