@@ -53,9 +53,20 @@
 
 ## {Henry's} Progress
 
-    * Create / design setting page
+-  Create / design setting page
+-  Comment on codes.
+-  ** 2
+  
+-  Challenges:
+    - Understand how Tailwind CSS work to design Layout of page
 
-    -* 2
+
+## Milestone
+    * Homepage of the app is set-up based on Figma design
+    * Backend server is created by using Express to replace the dummy version from milestone.
+    * A new repository is created to work on backend development and investigate use of web sockets.
+    * Create and design Setting Page along with commented on codes.
+
 
 ## Plan for Sprint 3
 
