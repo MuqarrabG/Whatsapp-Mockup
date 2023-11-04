@@ -29,3 +29,8 @@
 
     - Merged both Socket.IO and express server.
     - Working on creating the settings page.
+
+## Milestone
+    * Merge Socket.IO and Express Server
+    * Given the App a name and Logo
+    * Main functionality of the App and messaging services is created and works.
