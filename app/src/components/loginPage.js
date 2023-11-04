@@ -27,6 +27,10 @@ function LoginPage() {
     //console.log(credentials);
   };
 
+  const handleClick = () => {
+    navigate('/signup')
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-md">
@@ -75,7 +79,7 @@ function LoginPage() {
             <p className="text-gray-900">
               Don't have an account yet?{" "}
               <a
-                href="/signup"
+                onClick={handleClick}
                 className="font-bold text-lime-500 hover:text-lime-600"
               >
                 Signup
