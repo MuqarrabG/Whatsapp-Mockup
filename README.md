@@ -32,6 +32,31 @@ Minimum Viable Product (MVP)
 
 The MVP will be a simplified application, containing only the features necessary for the basic functionality of the web application. The MVP for the messaging application would support numerous users and each user could have a direct message thread with any other user. Groups, message threads that more than 2 users have permission to access, would be included in the MVP but the sending and receiving of videos, images, and audio would not be because that is a complicated feature and the application fulfills it’s purpose statement without it. All data will be stored in a cloud based data store, and permissions managing and authentication will be used to determine which users are allowed to request a particular thread in order to read it or to post messages to it. To have multiple user accounts the MVP will need to have authentication and password recovery features. The MVP will not include a mobile app, the web service would be accessible from a mobile device but there would not be a dedicated mobile app that communicates with the same server as the web service. This feature will be omitted for complexity’s sake. Notifications will also be omitted as they are a sub feature of the mobile app variant which does not fit within the MVP.
 
+Milestones
+
+## Milestone 1 (Week 9)
+    * Structure of database and dummy json server has been created.
+    * 10 user stories and react application has been created.
+    * Login and SignUp page of the App has been implemented along with the layout and flow of the landing page.
+    * Visual asthetics, logo and theme of the App has been created.
+
+## Milestone 2 (Week 10)
+    * Homepage of the app is set-up based on Figma design
+    * Backend server is created by using Express to replace the dummy version from milestone.
+    * A new repository is created to work on backend development and investigate use of web sockets.
+    * Create and design Setting Page along with commented on codes.
+
+## Milestone 3 (Week 11)
+    * MongoDB is connected to backend, schema for chats, messages, user being created and auto-scroll issue being fixed.
+    * Calls for Backend to responce being written and json data file is able to store messages time now.
+    * Backend functionality for current active user, user typing status being created.
+    * Setting page side bar and buttons being implemented.
+
+## Milestone 4 (Week 12)
+    * Merge Socket.IO and Express Server
+    * Given the App a name and Logo
+    * Main functionality of the App and messaging services is created and works.
+
 
 Main Components
 
