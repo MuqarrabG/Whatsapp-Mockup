@@ -44,6 +44,14 @@
         - Created App Overview document and information on landing page and other aspects of the App. Goal of this document in to help us design and structure the app. Note the document is not completed.
         - Implemented Login and Signup Page of the App (style and handling logic. Note: need to add Authenication logic)
 
+
+## Milestone
+    * Structure of database and dummy json server has been created.
+    * 10 user stories and react application has been created.
+    * Login and SignUp page of the App has been implemented along with the layout and flow of the landing page.
+    * Visual asthetics, logo and theme of the App has been created.
+
+    
 ## Plan for Sprint 2
 
     * Convert dummy server into express run server
