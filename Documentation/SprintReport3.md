@@ -41,6 +41,12 @@
     - Investigated on setting page layout.
     - Implemented side bar and buttons.
 
+## Milestone
+    * MongoDB is connected to backend, schema for chats, messages, user being created and auto-scroll issue being fixed.
+    * Calls for Backend to responce being written and json data file is able to store messages time now.
+    * Backend functionality for current active user, user typing status being created.
+    * Setting page side bar and buttons being implemented.
+
 ## Plan for Sprint 4
 
     - Merge Socket.io, express, and Mongo DB
