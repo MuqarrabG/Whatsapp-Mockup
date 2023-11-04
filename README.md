@@ -63,7 +63,7 @@ The main application used for communicate is Discord, where every member discuss
 
 Each team member in Blue-Orange contributed in different ways and it will be shown below:
 
-Andrew
+Andrew (Role: Back-end, Task admin)
 -   Backend json server
 -	Backend Express server
 -	Comment on backend server code
@@ -72,22 +72,22 @@ Andrew
 -	Deployment and documenting deployment in Deployment.md
 -   Taking Screenshots to show the app working
 
-Muqarrab
+Muqarrab (Role: Front-end and Back-end app developer)
 -	Front-end app functions such as onClick buttons
 -	Front-end Home Page, Sign-in Page functions
 -	Assist Andrew and Ben on backend server code
 -	Comment on front end code
 -	Collaborate with Ben on integrating back-end server and socket into front end
 
-Ben 
+Ben (Role: Back-end developer, Web Sockets.IO developer & Sprint report manager)
 -   Backend Sockets.IO code and integration
 -   Sprint report coordinator
 -	GitHub Project board manager
 -	Comment on backend socket code
 
-Henry
--	Design messaging app layout
--	Comment on front end code
+Henry (Role: Web design, Front-end developer, admin task)
+-	Design messaging app layout 
+-	Comment on codes
 -	Front-end Setting page layout and functions
 -	App layouts and designs
 -	App Theme and Logo
