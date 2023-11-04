@@ -57,6 +57,39 @@ Milestones
     * Given the App a name and Logo
     * Main functionality of the App and messaging services is created and works.
 
+Team members contributions, roles and interaction methods
+
+The main application used for communicate is Discord, where every member discuss the progression of the project, weekly task, and general discussions. Team members also meet up before class each week to have a short discussions on what have been done, plans for the next week and challenges faced. In conclusions, Blue-Orange communicates through Discord whenever it is needed and face to face weekly. 
+
+Each team member in Blue-Orange contributed in different ways and it will be shown below:
+
+Andrew
+-	Ensure Express works as back-end server
+-	Comment on codes
+-	Delegate task to team members
+-	Assist team members on merging individual and main GitHub Branches
+
+Muqarrab
+-	Front-end app functions such as onClick buttons
+-	Front-end Home Page, Sign-in Page functions
+-	Assist Andrew and Ben on backend server
+-	Comment on codes
+-	Implement MongoDB in the app and connect to back-end server
+
+Ben 
+-	Ensure Sockets.IO works on the app 
+-	Back-end functionality of app such as user typing status and messages situation between app
+-	Created and supervise each team members weekly sprint reports 
+-	Comment on codes 
+
+Henry
+-	Design messaging app layout 
+-	Comment on codes
+-	Front-end Setting page layout and functions
+-	App layouts and designs 
+-	App Theme and Logo 
+-	Update README.md file on GitHub
+-	Cross-check descriptions of projects on GitHub and ensure everything is up-to-dates
 
 Main Components
 
