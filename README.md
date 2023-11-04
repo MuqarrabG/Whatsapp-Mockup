@@ -68,6 +68,7 @@ Andrew
 -	Comment on codes
 -	Delegate task to team members
 -	Assist team members on merging individual and main GitHub Branches
+-	Update GitHub by completing Deployment.md and putting in Screenshots  
 
 Muqarrab
 -	Front-end app functions such as onClick buttons
