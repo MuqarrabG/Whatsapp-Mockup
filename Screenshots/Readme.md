@@ -27,3 +27,14 @@ This is what the create chat form looks like when the user is trying to create a
 # Create_Group.JPG
 This is what the create chat form looks like thwn the user is trying to create a chat group with multiple other users. (a Group)
 
+# Signup.JPG
+This is what the signup page looks like for making an account.
+
+# Signup_Invalid_Email.JPG
+This is what the signup page looks like if you entered an invalid Email address.
+
+# Signup_Password_Criteria.JPG
+This is what the signup page looks like if you select the password box.
+
+# Signup_Empty_Field.JPG
+This is what the signup page looks like if you submit the form with empty fields.
