@@ -1,5 +1,5 @@
 # Group Project-Blue Orange
-# {Messaging Service}
+# Messaging Service - Hi Five
 
 Outline of the Web Application
 
@@ -64,31 +64,33 @@ The main application used for communicate is Discord, where every member discuss
 Each team member in Blue-Orange contributed in different ways and it will be shown below:
 
 Andrew
--	Ensure Express works as back-end server
--	Comment on codes
--	Delegate task to team members
--	Assist team members on merging individual and main GitHub Branches
--	Update GitHub by completing Deployment.md and putting in Screenshots  
+-   Backend json server
+-	Backend Express server
+-	Comment on backend server code
+-	Organisational Manager
+-	Assist team members on resolving GitHub conflicts while merging Branches
+-	Deployment and documenting deployment in Deployment.md
+-   Taking Screenshots to show the app working
 
 Muqarrab
 -	Front-end app functions such as onClick buttons
 -	Front-end Home Page, Sign-in Page functions
--	Assist Andrew and Ben on backend server
--	Comment on codes
--	Implement MongoDB in the app and connect to back-end server
+-	Assist Andrew and Ben on backend server code
+-	Comment on front end code
+-	Collaborate with Ben on integrating back-end server and socket into front end
 
 Ben 
--	Ensure Sockets.IO works on the app 
--	Back-end functionality of app such as user typing status and messages situation between app
--	Created and supervise each team members weekly sprint reports 
--	Comment on codes 
+-   Backend Sockets.IO code and integration
+-   Sprint report coordinator
+-	GitHub Project board manager
+-	Comment on backend socket code
 
 Henry
--	Design messaging app layout 
--	Comment on codes
+-	Design messaging app layout
+-	Comment on front end code
 -	Front-end Setting page layout and functions
--	App layouts and designs 
--	App Theme and Logo 
+-	App layouts and designs
+-	App Theme and Logo
 -	Update README.md file on GitHub
 -	Cross-check descriptions of projects on GitHub and ensure everything is up-to-dates
 
