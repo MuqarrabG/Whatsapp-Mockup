@@ -1,5 +1,5 @@
 function ChatMessages({ messages, currentUser, lastMessageRef}) {
-  console.log("CHATMESASAGES", currentUser, messages)
+  // console.log("CHATMESASAGES", currentUser, messages)
   return (
     <div className="flex-1 overflow-auto bg-[#DAD3CC]">
       <div className="py-2 px-3">
