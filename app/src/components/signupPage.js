@@ -5,17 +5,24 @@ import { registerUser } from "../services/api";
 import makeToast from "./Toaster";
 
 function SignupPage() {
-  const [credentials, setCredentials] = useState({ email: "", username: "", password: "" ,confirmPassword: ""});
+  // State hook to store user credentials. Initializes with default empty values.
+  const [credentials, setCredentials] = useState({ email: "", username: "", password: "", confirmPassword: ""});
+  
+  // State hook to store a boolean indicating if the form is for a complaint.
   const [isComplaint, setIsComplaint] = useState(false);
+  
+  // A hook to navigate programmatically in a React Router environment.
   const navigate = useNavigate()
-
+  
+  // Functions to validate the password based on different criteria.
   const hasUpperCase = (password) => /[A-Z]/.test(password);
   const hasLowerCase = (password) => /[a-z]/.test(password);
   const hasDigits = (password) => /\d/.test(password);
   const hasMinLength = (password) => password.length >= 8;
-  const passwordsMatch = (password, confirmPassword) =>
-    password === confirmPassword && password !== "";
-
+  // Function to check if the password and confirm password fields match.
+  const passwordsMatch = (password, confirmPassword) => password === confirmPassword && password !== "";
+  
+  // An array of objects that defines the password requirements.
   const requirements = [
     { test: hasUpperCase, message: "Contain at least one uppercase letter" },
     { test: hasLowerCase, message: "Contain at least one lowercase letter" },
@@ -23,27 +30,33 @@ function SignupPage() {
     { test: hasMinLength, message: "Be at least 8 characters long" },
     { test: passwordsMatch, message: "Passwords must match", isConfirm: true },
   ];
-
+  
+  // Event handler for form field changes, updates the credentials state.
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Set new values in credentials while keeping the old ones intact.
     setCredentials((prevState) => ({ ...prevState, [name]: value }));
   };
-
+  
+  // Event handler for form submission.
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents the default form submission behavior.
+    // Calls the registerUser function with the credentials state.
     registerUser(credentials).then((response) => {
+      // On successful registration, displays a success toast and navigates to loginpage.
       makeToast("success", response.data)
       navigate('/')
     }).catch((error) => {
-      //console.log(error)
+      // On error, displays an error toast with the error message from the server's response.
       makeToast("error", error.response.data)
-    })
-    //console.log(credentials);
+    });
   };
-
+  
+  // Event handler to navigate the user to the login page.
   const handleToLogin = () => {
     navigate('/')
   };
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
