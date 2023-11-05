@@ -16,20 +16,21 @@ function HomePage({socket}) {
 
   //This prevent unlogged in user to access the app
   useEffect(() => {
-    // Check if the 'user' array is empty
+    // Check if the 'user' array is not empty
     if (!user || user.length === 0) {
       const loggedUser = getLocalStorage("loggedUser");
-  
+      // Check if the there is user logged in    
       if (loggedUser) {
         setUser(loggedUser);
         //getChats()
       } else {
+        // if there isn't user logged in it redirects them the home page
         makeToast("error", "Please Login to Access the app");
         navigate('/');
       }
     }
     // This console.log will now show updates every time 'user' changes
-    console.log("user logged in", user)
+    // console.log("user logged in", user)
 
     //getChats()
   }, [user, navigate]); // 'user' is now a dependency, so this effect runs whenever 'user' changes
@@ -44,18 +45,20 @@ function HomePage({socket}) {
   //   });
   //   getChats()
   // }, []);
-
+  // Defines an asynchronous function named getChats.
   const getChats = async () => {
-    //await delay(3000);
-    console.log(user.userId)
+    // console.log(user.userId)
+    // Awaits the resolution of getUserChats API call with the user's userId as an argument.
     await getUserChats(user.userId).then(res => {
+      // If the API call is successful, sets the chats state with the response data.
       setChats(res.data);
     }).catch(error => {
+      // If the API call fails, it displays an error toast notification.
       makeToast("error", "Error retrieving chats")
-      console.log("Got error on user chats", error)
+      // Additionally, logs the error to the console with a custom message for debugging purposes.
+      // console.log("Got error on user chats", error)
     })
   };
-
   // useEffect(() => {
   //   socket.on("messageResponse", (data) => setMessages([...messages, data]));
   // }, [socket, messages]);
@@ -71,10 +74,14 @@ function HomePage({socket}) {
   //       console.error("Failed to fetch users:", error);
   //     });
   // }, []);
+
+  
   useEffect(() => {
+    // gets chats that user is in
     if (user.userId) {
       getChats();
     }
+    // If someone creates a new chat with user it automatically updates the chatlist
     if (socket && user.userId) {
       socket.on("new_chat_event", getChats);
       // Cleanup function
@@ -86,6 +93,7 @@ function HomePage({socket}) {
     const handleCreateChat = () => {
       setOpenAddChat(true)
     };
+    // This event is dispatched from topbar when create group chat button is clicked.
     window.addEventListener("createChat", handleCreateChat);
     // Cleanup: Remove event listener on component unmount.
     return () => {
@@ -93,9 +101,11 @@ function HomePage({socket}) {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("Got chats", chats);
-  }, [chats]);
+  // Code below is commented as is used for debugging purposes
+
+  // useEffect(() => {
+  //   console.log("Got chats", chats);
+  // }, [chats]);
   
 
   return (
