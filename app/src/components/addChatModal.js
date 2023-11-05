@@ -1,6 +1,6 @@
 //Foreign Code credit the author required
 //https://github.com/hiteshchoudhary/apihub
-//This codes logic has been heavily modified so it work with our code.
+//This codes logic has been heavily modified to make it work with our structure.
 
 import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Switch, Transition } from "@headlessui/react";
