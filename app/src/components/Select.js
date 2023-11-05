@@ -1,5 +1,6 @@
 //Foreign Code credit the author required
 //https://github.com/hiteshchoudhary/apihub
+// Code has been converted to javascript
 
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
