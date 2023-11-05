@@ -1,55 +1,77 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const MessageInput = ({ socket, typingStatus, currentUser, chatId}) => {
+  // State hook for message text, initialized as an empty string.
   const [message, setMessage] = useState("");
+  // Ref hook for the textarea element to manipulate its properties directly.
   const textareaRef = useRef(null);
+  // State hook for the typing indicator status, initialized as null.
   const [isTyping, setIsTyping] = useState(null);
+  // Ref hook to store the typing timeout identifier.
   const typingTimeoutRef = useRef(null);
-
+  
+  // Function to handle sending messages.
   const handleSendMessage = (event) => {
-    // Handles sending the message via socket.io server event, including data sent over message.
+    // Prevents the default form submit behavior.
     event.preventDefault();
+    // Checks if the message is not just whitespace before sending.
     if (message.trim()) {
       const newMessage = {
+        // Content of the message.
         content: message,
+        // The username of the current user.
         author: currentUser.username, 
+        // The unique identifier of the current user.
         authorID: currentUser.userId,
+        // The timestamp of when the message was created, in ISO format with the 'Z' designation for UTC.
         createdAt: new Date().toISOString().split(".")[0] + "Z",
       }
+      // Emit a 'message' event to the server through the socket connection, passing the message and chat ID.
       socket.emit("message", {newMessage, chatId});
     }
-    setMessage(""); // Clear the input once the message has been sent.
+    // Resets the message state to an empty string after sending.
+    setMessage("");
   };
-
+  
+  // Function to emit a typing event.
   const handleTyping = () => {
-    // Function to display if a user is typing.
-    socket.emit('typing',  {username: currentUser.username, chatId})
+    // Emit a 'typing' event with the current user's username and chat ID.
+    socket.emit('typing', {username: currentUser.username, chatId})
   };
+  
+  // Function to handle key presses in the textarea.
   const handleKeyDown = (event) => {
+    // Checks for the Enter key press without the Shift key.
     if (event.key === "Enter" && !event.shiftKey) {
-      // Check for the Enter key; the shiftKey check allows for new lines when Shift+Enter is pressed
+      // Prevents default behavior to avoid line breaks in the textarea.
       event.preventDefault();
+      // Calls the send message handler.
       handleSendMessage(event);
     } else {
+      // Otherwise, calls the typing handler.
       handleTyping()
     }
   };
+  
+  // Effect for handling the typing response from the server.
   useEffect(() => {
+    // Listening for 'typingResponse' events from the server.
     socket.on("typingResponse", (data) => {
-      // Clear the old timeout if there's one
+      // Clears any existing typing timeout.
       if (typingTimeoutRef.current) {
         clearTimeout(typingTimeoutRef.current);
       }
-
-      setIsTyping(data); // Set new typing data
+  
+      // Sets the typing status with the received data.
+      setIsTyping(data);
       
-      // Set a timeout to clear the typing indicator after 1.5 seconds
+      // Starts a new timeout to remove the typing status after 1.5 seconds.
       typingTimeoutRef.current = setTimeout(() => {
         setIsTyping(null);
-      }, 1500); // 1.5 seconds until the typing status expires
+      }, 1500);
     });
-
-    // Cleanup the effect on unmount
+  
+    // Cleanup function to remove the event listener and clear the timeout when the component unmounts.
     return () => {
       socket.off("typingResponse");
       if (typingTimeoutRef.current) {
@@ -57,11 +79,17 @@ const MessageInput = ({ socket, typingStatus, currentUser, chatId}) => {
       }
     };
   }, [socket]);
+  
+  // Effect to adjust the height of the textarea based on its content.
   useEffect(() => {
+    // Resets the height to 'auto' before recalculating to prevent incorrect sizing.
     textareaRef.current.style.height = "auto";
+    // Sets the height to the scrollHeight, ensuring the content fits without scrollbars.
     textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    // Scrolls to the bottom of the textarea to make the latest content visible.
     textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
   }, [message]);
+
 
   return (
     <div class="bg-gray-200 px-4 py-4 flex flex-col items-start overflow-auto">
