@@ -30,16 +30,19 @@ function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  // opens the modal when you click menu icon
   const handleMenuClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
+  // when the mouse is clicked outside the dropdown menu it automatically closes it
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
     }
   };
 
+  
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
