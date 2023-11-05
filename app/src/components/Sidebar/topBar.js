@@ -7,6 +7,7 @@ function TopBar({user}) {
   //fetch some random user
   const [userProfile, setUserProfile] = useState([]);
 
+  // Logged in user get random avatar assigned
   useEffect(() => {
     randomService
       .getUser()
@@ -44,21 +45,27 @@ function DropdownMenu() {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
+  // If a mouse clicks outside the dropdown menu it closes it
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
     }
   };
 
+  // Logs out the user by remove user item from localstorage
+  // After logging out it navigates them to the login page
   const handleLogout = () => {
     localStorage.removeItem("loggedUser")
     makeToast("success", "User Logged Out")
     navigate("/")
   }
+
+  // Dispatches an event which opens the addChatModal embedded in the homepage.
   const handleCreateChatClick = () => {
     window.dispatchEvent(new Event("createChat"));
   };
 
+  // opens or closes the drop down menu
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
