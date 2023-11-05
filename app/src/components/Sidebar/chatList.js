@@ -2,13 +2,13 @@ import React from "react";
 
 function ChatList({ chats, user }) {
   const handleChatClick = (chat) => {
-    //Add logic to navigate to detailed view
+    // Dispatched an event to so the message panel component can update it self to the selected chat
     const event = new CustomEvent("chatSelected", {
       detail: chat.groupId,
     });
     window.dispatchEvent(event);
     //TEST
-    console.log(`Navigating to chat with ${chat.groupId}`);
+    // console.log(`Navigating to chat with ${chat.groupId}`);
   };
 
   // Formatting the timestamp
