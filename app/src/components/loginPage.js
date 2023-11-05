@@ -5,31 +5,43 @@ import makeToast from "./Toaster";
 import { loginUser } from "../services/api";
 import { setLocalStorage } from "./setGetLocal";
 function LoginPage() {
+  // State hook for credentials with initial state for 'email' and 'password'.
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  
+  // Hook to navigate programmatically with React Router.
   const navigate = useNavigate()
-
+  
+  // Handler for form field changes. It updates the credentials state when typing in the form inputs.
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Spreads the previous state and updates the field with the name corresponding to the input's name attribute.
     setCredentials((prevState) => ({ ...prevState, [name]: value }));
   };
-
+  
+  // Handler for form submission.
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents the browser's default form submission action.
+    // Calls the loginUser function with the credentials from the state.
     loginUser(credentials).then((response) => {
-      makeToast("success", "Logged in as "+response.data.username)
-      // localStorage.setItem("userloggedin", JSON.stringify(response.data));
+      // If login is successful, it shows a success toast with the logged-in user's name.
+      makeToast("success", "Logged in as " + response.data.username)
+      // Sets the logged-in user information in localStorage for session persistence.
+      // Previously using localStorage directly, now using a hypothetical setLocalStorage utility function.
       setLocalStorage("loggedUser", response.data)
+      // Navigates to the home route after successful login.
       navigate('/home')
     }).catch((error) => {
-      //console.log(error)
+      // If there is an error during login, displays an error toast with the error message.
       makeToast("error", error.response.data.error)
-    })
-    //console.log(credentials);
+    });
+    // A console.log for debugging credentials that has been commented out.
   };
-
+  
+  // Handler to navigate to the signup page.
   const handleClick = () => {
     navigate('/signup')
   }
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
