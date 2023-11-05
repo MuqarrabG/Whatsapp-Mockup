@@ -30,6 +30,7 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
     return className.filter(Boolean).join(" ");
   };
 
+  // Transfroms the array of user member into a format backend understands
   const morphArray = (originalArray) => {
     return originalArray.map((item) => {
       return {
@@ -39,18 +40,23 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
     });
   };
 
+  // Gets all the users from the database and set them users array
+  // Which is used to display avalaible users in the dropdown menu
   const getUsers = async () => {
     getAvailableUsers(user.userId).then((res) => {
       const { data } = res;
       setUsers(data || []);
     });
   };
+
+  // A React hook that is called when selectedUser or user changes.
   useEffect(() => {
     if (selectedUser.length > 0) {
       setMembers(morphArray([...selectedUser, user]));
     }
   }, [selectedUser, user]);
 
+  // Behaves similiarly to the one above but its purposed for group chat creation
   useEffect(() => {
     if (groupParticipants.length > 0) {
       setMembers(morphArray([...groupParticipants, user]));
@@ -58,10 +64,12 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
   }, [groupParticipants, user]);
 
   const createNewChat = () => {
+    // Checks if a user has been selected; if not, it shows an error toast.
     if (selectedUser.length === 0) {
       makeToast("error", "Please select a user");
       return;
     }
+    // Constructs a chat name from the current user and the selected user.
     const name = user.username + "-" + selectedUser[0].username;
     createChat(name, members)
       .then((res) => {
@@ -70,39 +78,51 @@ const AddChatModal = ({ user, open, onClose, onSuccess }) => {
         handleClose();
       })
       .catch((error) => {
+        // On error, it shows the error message on screen.
         makeToast("error", error.response.data.error);
       });
     console.log("New chat created", name, members);
   };
 
+  // Function to create a new groupchat
   const createNewGroupChat = async () => {
+    // Validates group name and the number of participants before proceeding
     if (!groupName) return makeToast("error", "Group name is required");
     if (!groupParticipants.length || groupParticipants.length < 2)
       return makeToast("error", "There must be at least 2 group participants");
+    // Call the backend api to create a group then handle the response accordinly
     createChat(groupName, members)
       .then((res) => {
+        // Shows a success message on the screen, call the onSuccess callback so the parent component knows its completed creating a chat
+        // then closes the modal
         makeToast("success", res.data);
         onSuccess()
         handleClose();
       })
       .catch((error) => {
+        // On error, it shows the error message on screen.
         makeToast("error", error.response.data.error);
       });
     console.log("New Group Chat", members, isGroupChat, groupName);
   };
 
+  // Function to reset states to create chats to avoid using previously entered states
   const handleClose = () => {
+     // Resets various states to their initial values.
     setUsers([]);
     setSelectedUser([]);
     setGroupName("");
     setGroupParticipants([]);
     setMembers([])
     setIsGroupChat(false);
+    // Calls the onClose callback to close this modal
     onClose();
   };
 
+  // Fetches users when the modal opens
   useEffect(() => {
-    if (!open) return;
+    if (!open) return; // If the modal is not open it returns early so following function is not excueted
+    // Calls the getUsers function
     getUsers();
   });
 
